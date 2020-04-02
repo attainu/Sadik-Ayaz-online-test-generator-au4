@@ -39,7 +39,8 @@ router.post('/signup', async (request, response) => {
 
 router.post('/login', async (request, response) => {
     try {
-        const { emailaddress, password } = request.body;
+       
+        const { emailaddress, password } = request.body.user;
         await User.findOne({ email: emailaddress }, (error, data) => {
 
             if (error) {
