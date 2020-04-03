@@ -39,7 +39,7 @@ export default class Login extends Component {
         if(this.state.loggedin)
         {
             return (
-                <Redirect to="/home"></Redirect>
+                <Redirect to="/dashboard"></Redirect>
             )
         }
         return (

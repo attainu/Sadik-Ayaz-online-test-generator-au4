@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./components/Login";
-import Home from "./components/home";
-
+import Dashboard from "./components/dashboard";
+import Logout from './components/logout';
+import Home from './components/home';
 class App extends Component {
   state = {
   };
@@ -12,12 +13,20 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <Route exact path="/">
-            <Login></Login>
-          </Route>
-          <Route path="/home">
-            <Home></Home>
-          </Route>
+          <Switch>
+            <Route exact path="/">
+              <Home></Home>
+            </Route>
+            <Route path="/login">
+              <Login></Login>
+            </Route>
+            <Route path="/dashboard">
+              <Dashboard></Dashboard>
+            </Route>
+            <Route path="/logout">
+              <Logout></Logout>
+            </Route>
+          </Switch>
         </Router>
 
       </div>
