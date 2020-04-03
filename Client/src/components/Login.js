@@ -33,7 +33,7 @@ export default class Login extends Component {
                     })
                 }
                 else {
-                    alert("wrong password");
+                    alert(res.data.message);
                 }
             })
     }
@@ -62,14 +62,14 @@ export default class Login extends Component {
                                 onChange={(e) => this.setState({ password: e.target.value })}>
                             </input>
                         </div>
-                        <input type="submit" className="btn btn-dark btn-block"></input>
+                        <input type="submit" className="btn btn-dark btn-block" value="Sign-In"></input>
                         <p className="forgot-password text-right">
                             Forgot password?
                             </p>
                     </form>
                     <hr></hr>
                     <p className="forgot-password text-center">
-                        Dont have an account?<Link to="/signup">Sign up here</Link>
+                        Don't have an account?<Link to="/signup">Sign-Up here</Link>
                     </p>
                 </div>
             </div>
