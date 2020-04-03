@@ -1,55 +1,60 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import axios from 'axios';
+import { Redirect } from "react-router-dom";
 
 export default class SignUp extends Component {
+    constructor(props) {
+        super(props);
+        this.Signup = this.Signup.bind(this);
+        this.state = {
+            success: false
+        }
+    }
+
+    Signup(event) {
+        event.preventDefault();
+        const { firstname, lastname, email, password } = this.state;
+        const user = {
+            firstname,
+            lastname,
+            email,
+            password
+        }
+        axios.post(`http://localhost:5000/signup`, { user }).then((res) => {
+            if (res.data.status) {
+                alert(res.data.message)
+                this.setState({
+                    success: res.data.status
+                })
+            }
+            else {
+                alert(res.data.message);
+            }
+        })
+
+    }
+
     render() {
-        
-        const { handleFirstName, handleLastName,handleEmail,handlePassword,handleSignup } = this.props
-
+        if (this.state.success) {
+            return <Redirect to="/login"></Redirect>
+        }
         return (
-            < React.Fragment >
-            <div className="auth-wrapper">
-                <div className="auth-inner">
-
-                    <form onSubmit={handleSignup}>
-                        <h3>Sign Up</h3>
-
-                        <div className="form-group">
-                            <label>First name</label>
-                            <input type="text" className="form-control" placeholder="First name" 
-                            onChange={handleFirstName}
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Last name</label>
-                            <input type="text" className="form-control" placeholder="Last name"
-                            onChange={handleLastName}
-                             />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Email address</label>
-                            <input type="email" className="form-control" placeholder="Enter email"
-                            onChange={handleEmail}
-                             />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Password</label>
-                            <input type="password" className="form-control" placeholder="Enter password"
-                            onChange={handlePassword}
-                             />
-                        </div>
-
-                        <button type="submit" className="btn btn-dark btn-block">Sign Up</button>
-                        <p className="forgot-password text-right">
-                            Already registered <Link to="/sign-in">sign in?</Link>
-                        </p>
-                    </form>
-                </div>
+            <div>
+                <form onSubmit={this.Signup}>
+                    <input type="text" placeholder="firstname"
+                        onChange={(e) => this.setState({ firstname: e.target.value })}></input>
+                    <input type="text" placeholder="lastname"
+                        onChange={(e) => this.setState({ lastname: e.target.value })}
+                    ></input>
+                    <input type="email" placeholder="email"
+                        onChange={(e) => this.setState({ email: e.target.value })}
+                    ></input>
+                    <input type="password" placeholder="password"
+                        onChange={(e) => this.setState({ password: e.target.value })}
+                    ></input>
+                    <input type="submit"></input>
+                </form>
             </div>
-            </React.Fragment >
         );
     }
 }

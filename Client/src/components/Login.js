@@ -51,24 +51,26 @@ export default class Login extends Component {
                     <form onSubmit={this.Login}>
                         <h3>Sign In</h3>
                         <div className="form-group">
+                            <label>Email address</label>
                             <input type="text" className="form-control" placeholder="Enter email"
                                 onChange={(e) => this.setState({ username: e.target.value })}>
                             </input>
                         </div>
                         <div className="form-group">
+                            <label>Password</label>
                             <input type="password" className="form-control" placeholder="Enter password"
                                 onChange={(e) => this.setState({ password: e.target.value })}>
                             </input>
                         </div>
                         <input type="submit" className="btn btn-dark btn-block"></input>
                         <p className="forgot-password text-right">
-                                Forgot password?
-                </p>
+                            Forgot password?
+                            </p>
                     </form>
                     <hr></hr>
                     <p className="forgot-password text-center">
-                                Dont have an account?<Link to="/signup">Sign up here</Link>
-                </p>
+                        Dont have an account?<Link to="/signup">Sign up here</Link>
+                    </p>
                 </div>
             </div>
         );

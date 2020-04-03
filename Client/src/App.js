@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Dashboard from "./components/dashboard";
 import Logout from './components/logout';
 import Home from './components/home';
+import Signup from './components/Signup';
 class App extends Component {
   state = {
   };
@@ -25,6 +26,9 @@ class App extends Component {
             </Route>
             <Route path="/logout">
               <Logout></Logout>
+            </Route>
+            <Route path="/signup">
+              <Signup></Signup>
             </Route>
           </Switch>
         </Router>
