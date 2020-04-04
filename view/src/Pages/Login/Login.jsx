@@ -8,7 +8,7 @@ class Login extends Component {
   state = {
     username: null,
     password: null,
-    loggedin: false,
+    loggedin: null,
   };
 
   loginHandler = (event) => {
@@ -27,7 +27,7 @@ class Login extends Component {
         localStorage.setItem("firstname", response.data.data.firstname);
         localStorage.setItem("id", response.data.data._id);
         this.setState({
-          loggedin: true,
+          loggedin: localStorage.getItem('token')
         });
       } else {
         alert(response.data.message);
