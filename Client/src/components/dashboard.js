@@ -11,14 +11,13 @@ class Home extends Component {
         if (token === null) {
             loggedin = false
         }
+    }
+    state = {
 
-        this.state = {
-
-            loggedin,
-            token,
-            name,
-            id
-        }
+        loggedin,
+        token,
+        name,
+        id
     }
 
     render() {
