@@ -29,25 +29,22 @@ class Home extends Component {
         }
 
         return (
-            <React.Fragment>< nav className="navbar navbar-expand-lg navbar-light bg-light static-top">
-                <div className="container-fluid">
-                    <div className="navbar-nav mr-auto">
-                        <Link className="navbar-brand" to="/dashboard">testmania</Link>
+            <React.Fragment>
+                < nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+                    <div className="container-fluid">
+                        <div className="navbar-nav mr-auto">
+                            <Link className="navbar-brand" to="/dashboard">testmania</Link>
+                        </div>
+                        <ul className="navbar-nav ml-auto">
+                            <div className="navbar-nav mr-auto">
+                                <Link className="navbar-brand text-capitalize" to="/user">hey {this.state.name}</Link>
+                            </div>
+                            <li className="nav-item">
+                                <Link to="/logout" className="nav-link text-dark link-button text-center">Logout</Link>
+                            </li>
+                        </ul>
                     </div>
-                    <ul className="navbar-nav ml-auto">
-                    <div className="navbar-nav mr-auto">
-        <Link className="navbar-brand text-capitalize" to="/user">hey {this.state.name}</Link>
-                    </div>
-                        <li className="nav-item">
-                            <Link to="/logout" className="nav-link text-dark link-button text-center">Logout</Link>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-
-                <div className="container">
-                    <h1>dashboard</h1>
-                </div>
+                </nav>
             </React.Fragment>
         );
     }

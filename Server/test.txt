@@ -1,3 +1,8 @@
+
+user -->test [testid]
+techers -test1,test2,test3
+test --[quesu1,question2]
+
 test {
     questions : [
         {
