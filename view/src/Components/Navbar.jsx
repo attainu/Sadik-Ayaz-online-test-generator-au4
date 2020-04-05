@@ -13,6 +13,14 @@ const Navbar = (props) => {
             </Link>
           </div>
           <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+              <Link
+                to="/About"
+                className="nav-link text-dark link-button text-center"
+              >
+                About us
+              </Link>
+            </li>
             <li className="nav-item">
               <Link
                 to="/sign-in"
