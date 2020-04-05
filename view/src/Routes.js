@@ -4,7 +4,6 @@ import Home from './Pages/Home/Home';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Logout from './Components/Logout';
 
-
 var routes = [
     {
         path: "/sign-in",
@@ -36,6 +35,7 @@ var routes = [
         icon: "nc-icon nc-bank",
         component: Logout
       }
+
 
 ]
 

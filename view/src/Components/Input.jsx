@@ -5,6 +5,7 @@ const Input = (props) => {
         <div className="form-group">
             <label>{props.label}</label>
             <input type={props.type} className="form-control" placeholder={props.value}
+            autocomplete ="current-password"
             onChange={props.handleChange}></input>
         </div>
     );

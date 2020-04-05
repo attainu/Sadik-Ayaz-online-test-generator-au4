@@ -1,10 +1,11 @@
 const Question = require('../model/questionSchema');
+const Test = require('../model/testSchema');
 const question = {};
 
 question.create = async (request, response) => {
     try {
 
-        const { question, options, answer, marks } = request.body
+        const { question, options, answer, marks, testId } = request.body.question
         let questions = {
             question,
             options,
@@ -13,13 +14,15 @@ question.create = async (request, response) => {
         }
 
         let questionModel = new Question(questions);
-        questionModel.save().then((error, data) => {
-            if (error) {
-                response.json(error);
-            }
+        questionModel.save().then(data => {
 
-            response.json(data);
-        })
+            return Test.findOneAndUpdate(
+                { _id: testId },
+                { $push: { questions: data._id } },
+                { new: true }
+
+            );
+        }).then(data => response.json(data)).catch(error => response.json(error));
 
     }
     catch (error) {
