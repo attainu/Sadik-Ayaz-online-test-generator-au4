@@ -37,7 +37,7 @@ class Test extends Component {
   questionHandler = async (event) => {
     event.preventDefault();
     let question = {
-        testId:this.state.testId,
+      testId: this.state.testId,
       question: this.state.question,
       options: {
         option1: this.state.option1,
@@ -52,10 +52,11 @@ class Test extends Component {
 
     await axios
       .post("http://localhost:5000/question/create", { question })
-      .then((response)=>{
-          if(response.status===200){
-              alert("queston added succesfullly");
-          }})
+      .then((response) => {
+        if (response.status === 200) {
+          alert("queston added succesfullly");
+        }
+      })
       .catch((error) => console.log(error));
   };
 
