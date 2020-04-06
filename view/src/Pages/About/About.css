@@ -2,16 +2,11 @@ h2{
     color: #ffa500;
     font-size: 30px;
 }
-.Background{
-    background-image: url('./about.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
+
 .display-3{
     color: #ffa500;
 }
-p{
-    color: lightyellow;
-    text-indent: 50px;
+.underline{
+    text-decoration: underline;
+    margin: 2px;
 }
-

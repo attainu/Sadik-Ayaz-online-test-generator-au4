@@ -6,14 +6,15 @@ class Home extends Component {
   state = {};
   render() {
     return (
-      <div>
-        <div className="container w3-container w3-center w3-animate-opacity">
-          <img
-            src="../../screenie.png"
-            alt="..."
-            className="float-right w3-container w3-center w3-animate-bottom"
-          ></img>
+          <div className="container w3-container w3-center w3-animate-opacity">
+          <br/>
+          <br/>
 
+          <img
+                  src='../../home.png'
+                  class="float-right w3-container w3-center w3-animate-bottom"
+                  alt=""
+                />
           <h1 className="col">
             Create a test for your <br />
             Class, Business or Organization.
@@ -35,9 +36,9 @@ class Home extends Component {
             </Link>
           </div>
           <br />
-          <hr></hr>
+          <hr/>
 
-          <h1 className="text-center">Test-Mania is (very) Simple.</h1>
+          <h1 className="text-center shadow-lg p-3 mb-5 bg-white rounded">Test-Mania is (very) Simple.</h1>
           <div class="how-section1">
             <div class="row">
               <div class="col-md-6 how-img">
@@ -115,7 +116,7 @@ class Home extends Component {
           <h2 className="text-center">Who uses Test-Mania?</h2>
 
           <div class="row">
-            <div class="col-md-4 text-center">
+            <div class="col-md-4 text-center ">
               <h2>Teachers</h2>
               <p>
                 Use Test-Mania to automatically grade your tests so you can get
@@ -125,7 +126,7 @@ class Home extends Component {
               </p>
             </div>
 
-            <div class="col-md-4 text-center">
+            <div class="col-md-4 text-center shadow-lg p-3 mb-5 bg-white rounded">
               <h2>Trainers</h2>
               <p>
                 Ensure your learners have mastered your training material with
@@ -145,8 +146,6 @@ class Home extends Component {
           </div>
           <hr></hr>
         </div>
-        
-      </div>
     );
   }
 }

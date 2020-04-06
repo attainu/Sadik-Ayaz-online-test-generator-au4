@@ -6,11 +6,11 @@ class About extends Component {
   state = {};
   render() {
     return (
-      <div className=''>
+      <div className='w3-container w3-center w3-animate-opacity'>
           <main role="main">
-          <div class="Background">
-            <div class="container">
-              <h1 class="display-3">About US</h1>
+          <div class="">
+            <div class="container shadow-lg p-3 mb-5 bg-white rounded">
+              <h1 class="display-3">About US</h1><br/>
               <p>Test-Mania is an online test generator to help you create and manage your tests!
                       Create, print and publish your tests online! Test-Mania makes it easy for you to perfectly format multiple question types, 
                       print alternate versions, and publish to the web for online tests. 
@@ -21,10 +21,12 @@ class About extends Component {
                       </button>
                     </Link></p>
             </div>
+            <hr/>
+            </div>
             <div class="container">
-              <h1 className='text-center'>Features</h1><br/>
+              <h1 className='text-center underline'>Features</h1><br/>
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 shadow-lg p-3 mb-5 bg-white rounded">
                   <h2>Perfectly formatted tests</h2>
                   <p>Create multiple choice, fill-in-the-blank, matching, short answer and true or false questions. Add instructions and divide your test into multiple sections. </p>
                 </div>
@@ -33,12 +35,12 @@ class About extends Component {
                   <p>Create a test with your entire question bank. Publish your test and choose to present as few or as many questions as you require. Each test taker will have a random set of questions.</p>
                   
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 shadow-lg p-3 mb-5 bg-white rounded">
                   <h2>Build exams with ease</h2>
                   <p>Create an exam from your existing tests with just a few clicks. At any time you can copy a question from one test to another one!</p>
                 </div><br/>
 
-                <div class="col-md-4">
+                <div class="col-md-4 shadow-lg p-3 mb-5 bg-white rounded">
                   <h2>Online tests graded automatically</h2>
                   <p>Published online tests are graded automatically. View and print student's results and override grading when necessary. The same test you print, is the same test you publish online!</p>
                 </div>
@@ -46,13 +48,13 @@ class About extends Component {
                   <h2>Question analysis reporting</h2>
                   <p>Quick and easy reports to see how many test takers answered which questions right and wrong.</p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 shadow-lg p-3 mb-5 bg-white rounded">
                   <h2>Export to Word or PDF</h2>
                   <p>Any test, any version, including answer sheets can be download as a Micrsoft Word or PDF document to be saved and printed later.</p>
                 </div><br/>
               </div><br/>
 
-              <div class=" text-center">
+              <div class=" text-center shadow-lg p-3 mb-5 bg-white rounded">
                     <h2>Make the most of your time, sign up now for Test-Mania!</h2>
                     <p>EasyTestMaker eliminates wasted time spent on formatting. 
                     Add new questions and sections, move them around as needed and let EasyTestMaker do the hard work for you. 
@@ -68,8 +70,6 @@ class About extends Component {
               <hr/>
 
               </div>
-
-            </div>
             
           </main>
       </div>
