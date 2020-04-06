@@ -62,69 +62,122 @@ class Test extends Component {
 
   render() {
     return (
-      <div className="row">
-        <form className="col-md-4" onSubmit={this.testHandler}>
-          <Input
-            label="test name"
-            handleChange={(event) =>
-              this.setState({ testName: event.target.value })
-            }
-          />
-          <input type="submit" value="create" />
-        </form>
-        <br></br>
+      <div>
         {this.state.testId ? (
-          <form className="col-md-4" onSubmit={this.questionHandler}>
-            <Input
-              label="Question"
-              handleChange={(event) =>
-                this.setState({ question: event.target.value })
-              }
-            />
-            <Input
-              label="A"
-              handleChange={(event) =>
-                this.setState({ option1: event.target.value })
-              }
-            />
-            <Input
-              label="B"
-              handleChange={(event) =>
-                this.setState({ option2: event.target.value })
-              }
-            />
-            <Input
-              label="C"
-              handleChange={(event) =>
-                this.setState({ option3: event.target.value })
-              }
-            />
-            <Input
-              label="D"
-              handleChange={(event) =>
-                this.setState({ option4: event.target.value })
-              }
-            />
-            <select
-              onChange={(event) =>
-                this.setState({ answer: event.target.value })
-              }
-            >
-              <option>{this.state.option1}</option>
-              <option>{this.state.option2}</option>
-              <option>{this.state.option3}</option>
-              <option>{this.state.option4}</option>
-            </select>
-            <br></br>
-            <Input
-              label="marks"
-              handleChange={(event) =>
-                this.setState({ marks: event.target.value })
-              }
-            />
-            <input type="submit"></input>
-          </form>
-        ) : null}
+          <div className="card mx-auto mt-5 col-md-10">
+            <div className="card-body">
+              <h3>Please Add Question</h3>
+              <hr></hr>
+              <form onSubmit={this.questionHandler}>
+                <div className="row form-group">
+                  <div className="col-md-2">
+                    <label className="lable-class">Question :</label>
+                  </div>
+                  <div className="col-md-10">
+                    <input
+                      type="text"
+                      className="form-control user-input"
+                      onChange={(event) =>
+                        this.setState({ question: event.target.value })
+                      }
+                    ></input>
+                  </div>
+                </div>
+                <div className="row form-group">
+                  <div className="col-md-2 text-center">
+                    <label className="lable-class">A.</label>
+                  </div>
+                  <div className="col-md-4">
+                    <input
+                      type="text"
+                      className="form-control user-input"
+                      onChange={(event) =>
+                        this.setState({ option1: event.target.value })
+                      }
+                    ></input>
+                  </div>
+                  <div className="col-md-2 text-center">
+                    <label className="lable-class">B.</label>
+                  </div>
+                  <div className="col-md-4">
+                    <input
+                      type="text"
+                      className="form-control user-input"
+                      onChange={(event) =>
+                        this.setState({ option2: event.target.value })
+                      }
+                    ></input>
+                  </div>
+                </div>
+                <div className="row form-group">
+                  <div className="col-md-2 text-center">
+                    <label className="lable-class">C.</label>
+                  </div>
+                  <div className="col-md-4">
+                    <input
+                      type="text"
+                      className="form-control user-input"
+                      onChange={(event) =>
+                        this.setState({ option3: event.target.value })
+                      }
+                    ></input>
+                  </div>
+                  <div className="col-md-2 text-center">
+                    <label className="lable-class">D.</label>
+                  </div>
+                  <div className="col-md-4">
+                    <input
+                      type="text"
+                      className="form-control user-input"
+                      onChange={(event) =>
+                        this.setState({ option4: event.target.value })
+                      }
+                    ></input>
+                  </div>
+                </div>
+                <div className="row form-group">
+                  <div className="col-md-2 text-center">
+                    <label className="lable-class">Answer</label>
+                  </div>
+                  <div className="col-md-4">
+                    <select className="form-control">
+                      <option>{this.state.option1}</option>
+                      <option>{this.state.option2}</option>
+                      <option>{this.state.option3}</option>
+                      <option>{this.state.option4}</option>
+                    </select>
+                  </div>
+
+                  <div className="col-md-4 ml-auto">
+                    <input
+                      type="submit"
+                      className="btn btn-block btn-primary"
+                      value="Add Question"
+                    ></input>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        ) : (
+          <div className="card mx-auto col-md-6 mt-5">
+            <div className="card-body">
+              <form className="" onSubmit={this.testHandler}>
+                <h3>Enter Test Name Here.</h3>
+                <Input
+                  handleChange={(event) =>
+                    this.setState({ testName: event.target.value })
+                  }
+                />
+                <input
+                  type="submit"
+                  className="btn btn-block btn-primary"
+                  value="create"
+                />
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
