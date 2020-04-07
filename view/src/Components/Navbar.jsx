@@ -38,13 +38,8 @@ const Navbar = (props) => {
   else {
     
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <nav className="navbar navbar-expand-lg bg-light sticky-top nav-dashboard">
         <div className="container-fluid">
-          <div className="navbar-nav mr-auto">
-            <Link className="navbar-brand" to="/dashboard">
-              Test-Mania
-            </Link>
-          </div>
           <ul className="navbar-nav ml-auto">
           <li className="nav-item">
               <Link to="/dashboard"
