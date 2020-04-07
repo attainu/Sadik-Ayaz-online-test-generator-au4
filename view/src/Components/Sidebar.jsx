@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 class Sidebar extends Component {
+
+  navigateTo = (path) => {
+    this.props.history.push(path);
+  };
   render() {
-    const {
-      homeHandler,
-      createTestHandler,
-      testHistoryHandler,
-      profileHandler,
-      resultsHandler,
-    } = this.props;
     return (
       <div className="col-md-2 sidebar-wrapper bg-light">
         <div className="navbar-nav mx-auto my-auto">
@@ -18,19 +15,19 @@ class Sidebar extends Component {
         </div>
         <hr></hr>
         <div>
-          <p className="nav-link dash-navbar" onClick={homeHandler}>
+          <p className="nav-link dash-navbar" onClick={()=>{this.navigateTo('/home')}}>
             Home
           </p>
-          <p className="nav-link dash-navbar" onClick={createTestHandler}>
+          <p className="nav-link dash-navbar" onClick={()=>{this.navigateTo('/add-test')}}>
             Create Test
           </p>
-          <p className="nav-link dash-navbar" onClick={testHistoryHandler}>
+          <p className="nav-link dash-navbar" onClick={()=>{this.navigateTo('/test-history')}}>
             Test History
           </p>
-          <p className="nav-link dash-navbar" onClick={profileHandler}>
+          <p className="nav-link dash-navbar" onClick={()=>{this.navigateTo('/profile')}}>
             Profile
           </p>
-          <p className="nav-link dash-navbar" onClick={resultsHandler}>
+          <p className="nav-link dash-navbar" onClick={()=>{this.navigateTo('/results')}}>
             Results
           </p>
         </div>
