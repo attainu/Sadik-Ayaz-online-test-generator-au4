@@ -5,12 +5,28 @@ var app = {
     getToken: function () {
         return localStorage.getItem("token");
     },
-    getName: function(){
-        return localStorage.getItem("firstname");
-    },
     removeToken: function () {
         return localStorage.removeItem("token");
+    },
+    getName: function () {
+        return localStorage.getItem("username");
+    },
+    setName: function (username) {
+        return localStorage.setItem("username", username);
+    },
+    removeName: function () {
+        return localStorage.removeItem("username");
+    },
+    getUserId: function () {
+        return localStorage.getItem("userid");
+    },
+    setUserId: function (userid) {
+        return localStorage.setItem("userid", userid);
+    },
+    removeUserId: function () {
+        return localStorage.removeItem("userid");
     }
+
 };
 
 export default app;

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Signup.css";
-import Input from "../../basic/Input";
 import axios from "axios";
 import { Redirect, Link } from "react-router-dom";
 
@@ -13,7 +12,7 @@ class SignUp extends Component {
     success: false,
   };
 
-  signupHandler = (event) => {
+  signupHandler = async (event) => {
     event.preventDefault();
 
     const { firstname, lastname, email, password } = this.state;
@@ -25,7 +24,7 @@ class SignUp extends Component {
       password,
     };
 
-    axios.post(`http://localhost:5000/signup`, { user }).then((res) => {
+    await axios.post(`http://localhost:5000/signup`, { user }).then((res) => {
       if (res.data.status) {
         alert(res.data.message);
         this.setState({
@@ -38,7 +37,6 @@ class SignUp extends Component {
   };
 
   render() {
-
     if (this.state.success) {
       return <Redirect to="/sign-in"></Redirect>;
     }
@@ -49,38 +47,50 @@ class SignUp extends Component {
           <h3>Sign-Up</h3>
           <hr></hr>
           <form onSubmit={this.signupHandler}>
-            <Input
-              value="Enter Firstname"
-              label="First Name"
-              type="text"
-              handleChange={(event) => {
-                this.setState({ firstname: event.target.value });
-              }}
-            />
-            <Input
-              value="Enter Lastname"
-              label="Last Name"
-              type="text"
-              handleChange={(event) => {
-                this.setState({ lastname: event.target.value });
-              }}
-            />
-            <Input
-              value="Enter Email"
-              label="Email"
-              type="email"
-              handleChange={(event) => {
-                this.setState({ email: event.target.value });
-              }}
-            />
-            <Input
-              value="Enter Password"
-              label="Password"
-              type="password"
-              handleChange={(event) => {
-                this.setState({ password: event.target.value });
-              }}
-            />
+            <div className="form-group">
+              <label>First Name</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter first name"
+                onChange={(event) => {
+                  this.setState({ firstname: event.target.value });
+                }}
+              ></input>
+            </div>
+            <div className="form-group">
+              <label>Last Name</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter last name name"
+                onChange={(event) => {
+                  this.setState({ lastname: event.target.value });
+                }}
+              ></input>
+            </div>
+            <div className="form-group">
+              <label>Email Address</label>
+              <input
+                type="email"
+                className="form-control"
+                placeholder="ex. bruce@wayne.com "
+                onChange={(event) => {
+                  this.setState({ email: event.target.value });
+                }}
+              ></input>
+            </div>
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Enter password "
+                onChange={(event) => {
+                  this.setState({ password: event.target.value });
+                }}
+              ></input>
+            </div>
             <input
               type="submit"
               className="btn btn-dark btn-block"
