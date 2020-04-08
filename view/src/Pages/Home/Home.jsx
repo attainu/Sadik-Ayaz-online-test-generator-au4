@@ -29,7 +29,7 @@ class Home extends Component {
           <br />
 
           <div class="text-center">
-            <Link to="/Signup">
+            <Link to="/sign-up">
               <button type="button" className="btn btn-success">
                 Build a Test
               </button>
@@ -38,7 +38,7 @@ class Home extends Component {
           <br />
           <hr/>
 
-          <h1 className="text-center shadow-lg p-3 mb-5 bg-white rounded">Test-Mania is (very) Simple.</h1>
+          <h1 className="text-center">Test-Mania is (very) Simple.</h1>
           <div class="how-section1">
             <div class="row">
               <div class="col-md-6 how-img">
