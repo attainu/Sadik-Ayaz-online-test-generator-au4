@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import Navbar from "../../Components/Navbar";
-import Footer from '../../Components/Footer';
+import Navbar from "../../basic/Navbar";
+import Footer from '../../basic/Footer';
 
 class Home extends Component {
   state = {};

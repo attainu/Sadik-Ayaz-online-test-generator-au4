@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Signup.css";
-import Input from "../../Components/Input";
+import Input from "../../basic/Input";
 import axios from "axios";
 import { Redirect, Link } from "react-router-dom";
 

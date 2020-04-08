@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Input from "../../Components/Input";
+import Input from "../../basic/Input";
 import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
