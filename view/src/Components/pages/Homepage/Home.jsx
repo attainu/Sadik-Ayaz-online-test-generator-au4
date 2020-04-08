@@ -9,7 +9,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Navbar></Navbar>
+        <Navbar/>
         <div className="container w3-container w3-center w3-animate-opacity">
           <img
             src="../../screenie.png"
