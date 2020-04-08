@@ -15,7 +15,7 @@ class Sidebar extends Component {
         </div>
         <hr></hr>
         <div>
-          <p className="nav-link dash-navbar" onClick={()=>{this.navigateTo('/home')}}>
+          <p className="nav-link dash-navbar" onClick={()=>{this.navigateTo('/dashboard')}}>
             Home
           </p>
           <p className="nav-link dash-navbar" onClick={()=>{this.navigateTo('/add-test')}}>

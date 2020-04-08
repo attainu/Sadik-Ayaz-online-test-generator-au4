@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Input from "./Input";
+import Input from "../../../basic/Input";
 import axios from "axios";
 
 class Test extends Component {
