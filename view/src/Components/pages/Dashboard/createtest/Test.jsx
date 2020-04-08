@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Input from "../../../basic/Input";
 import axios from "axios";
+import app from "../../../../appsBasic";
 
 class Test extends Component {
   state = {
     testName: null,
     testId: null,
-    id: localStorage.getItem("id"),
+    id: app.getUserId(),
     question: null,
     option1: null,
     option2: null,
@@ -164,11 +164,16 @@ class Test extends Component {
             <div className="card-body">
               <form className="" onSubmit={this.testHandler}>
                 <h3>Enter Test Name Here.</h3>
-                <Input
-                  handleChange={(event) =>
-                    this.setState({ testName: event.target.value })
-                  }
-                />
+                <div className="form-group">
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="enter test name"
+                    onChange={(event) => {
+                      this.setState({ testName: event.target.value });
+                    }}
+                  ></input>
+                </div>
                 <input
                   type="submit"
                   className="btn btn-block btn-primary"
