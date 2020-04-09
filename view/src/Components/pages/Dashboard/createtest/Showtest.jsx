@@ -2,7 +2,7 @@ import React from "react";
 const Showtest = (props) => {
   return (
     <div className="card">
-      <h3>{props.testName}</h3>
+      <h3 className="mt-3 text-capitalize text-danger">{props.testName}</h3>
       {props.testQuestion.map((item, index) => {
         return (
           <div className="card col-10 mt-3 mx-auto" key={index}>
@@ -13,6 +13,7 @@ const Showtest = (props) => {
                 </div>
                 <div className="col-md-11">
                   <p className="text-left">{item.question}</p>
+                  <i class="fas fa-edit"></i>
                 </div>
               </div>
               <div className="row">
