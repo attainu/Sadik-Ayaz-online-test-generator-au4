@@ -25,6 +25,15 @@ var app = {
     },
     removeUserId: function () {
         return localStorage.removeItem("userid");
+    },
+    getTestId: function () {
+        return localStorage.getItem("testid");
+    },
+    setTestId: function (testid) {
+        return localStorage.setItem("testid", testid);
+    },
+    removeTestId: function () {
+        return localStorage.removeItem("testid");
     }
 
 };

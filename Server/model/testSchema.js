@@ -12,4 +12,4 @@ const questionSchema = new mongoose.Schema({
 }, { collection: 'tests' });
 
 
-module.exports = User = mongoose.model('test', questionSchema);
+module.exports = User = mongoose.model('tests', questionSchema);

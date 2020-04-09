@@ -1,8 +1,11 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import app from "../../../appsBasic";
 
 const logout = () => {
-  localStorage.removeItem("token");
+  app.removeToken();
+  app.removeUserId();
+  app.removeName();
   return <Redirect to="/"></Redirect>;
 };
 

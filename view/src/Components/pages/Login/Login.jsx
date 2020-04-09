@@ -63,7 +63,7 @@ class Login extends Component {
               ></input>
             </div>
             <div className="form-group">
-              <label>Email</label>
+              <label>Password</label>
               <input
                 type="password"
                 className="form-control"

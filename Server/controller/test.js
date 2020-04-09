@@ -36,4 +36,22 @@ test.create = async (request, response) => {
     }
 }
 
+test.readById = async (request, response) => {
+    try {
+        console.log(request.params);
+        await Test.findOne({ _id: request.params.id })
+            .populate("questions")
+            .then((data) => {
+                response.json(data);
+            })
+            .catch((err) => {
+                response.json(err);
+            });
+
+    }
+    catch (error) {
+        response.json(error.message);
+    }
+}
+
 module.exports = test;

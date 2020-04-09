@@ -10,4 +10,6 @@ router.post('/login', authentication.login);
 router.post('/question/create',question.create);
 router.post('/test/create',test.create);
 
+router.get('/test/read/:id',test.readById);
+
 module.exports = router;
