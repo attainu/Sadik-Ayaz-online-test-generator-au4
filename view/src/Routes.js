@@ -38,8 +38,9 @@ const RequiresAuthentication = ({ component: Component, ...rest }) => (
     {...rest}
     render={props =>
       apps.getToken() ? (
-        <div className="container-fluid">
+        <React.Fragment>
           <Navbar name={app.getName()} token={apps.getToken()} />
+          <div className="container-fluid">
             <div className="row">
               <div className="col-md-2">
                 <Sidebar {...props} />
@@ -49,7 +50,7 @@ const RequiresAuthentication = ({ component: Component, ...rest }) => (
               </div>
             </div>
           </div>
-        
+        </React.Fragment>
       ) : (
           <Redirect
             to={{

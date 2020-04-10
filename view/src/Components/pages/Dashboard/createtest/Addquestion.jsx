@@ -12,7 +12,7 @@ class AddQuestion extends Component {
     option4: null,
     answer: null,
     marks: 2,
-    testQuestion: null
+    testQuestion: null,
   };
 
   questionHandler = async (event) => {
@@ -34,6 +34,15 @@ class AddQuestion extends Component {
       .post("http://localhost:5000/question/create", { question })
       .then((response) => {
         if (response.status === 200) {
+          this.setState({
+            question: null,
+            option1: null,
+            option2: null,
+            option3: null,
+            option4: null,
+            answer: null,
+            marks: 2,
+          });
           alert("queston added succesfullly");
         }
       })
@@ -53,7 +62,7 @@ class AddQuestion extends Component {
 
   render() {
     return (
-      <div className="col-10 mx-auto" >
+      <div className="col-10 mx-auto">
         <div className="card mt-1 mb-3">
           <div className="card-body">
             <h3>Please Add Question</h3>
@@ -61,7 +70,7 @@ class AddQuestion extends Component {
             <form onSubmit={this.questionHandler}>
               <div className="row form-group">
                 <div className="col-md-2">
-                  <label className="lable-class">Question :</label>
+                  <label className="lable-className">Question :</label>
                 </div>
                 <div className="col-md-10">
                   <input
@@ -75,7 +84,7 @@ class AddQuestion extends Component {
               </div>
               <div className="row form-group">
                 <div className="col-md-2 text-center">
-                  <label className="lable-class">A.</label>
+                  <label className="lable-className">A.</label>
                 </div>
                 <div className="col-md-4">
                   <input
@@ -87,7 +96,7 @@ class AddQuestion extends Component {
                   ></input>
                 </div>
                 <div className="col-md-2 text-center">
-                  <label className="lable-class">B.</label>
+                  <label className="lable-className">B.</label>
                 </div>
                 <div className="col-md-4">
                   <input
@@ -101,7 +110,7 @@ class AddQuestion extends Component {
               </div>
               <div className="row form-group">
                 <div className="col-md-2 text-center">
-                  <label className="lable-class">C.</label>
+                  <label className="lable-className">C.</label>
                 </div>
                 <div className="col-md-4">
                   <input
@@ -113,7 +122,7 @@ class AddQuestion extends Component {
                   ></input>
                 </div>
                 <div className="col-md-2 text-center">
-                  <label className="lable-class">D.</label>
+                  <label className="lable-className">D.</label>
                 </div>
                 <div className="col-md-4">
                   <input
@@ -127,7 +136,7 @@ class AddQuestion extends Component {
               </div>
               <div className="row form-group">
                 <div className="col-md-2 text-center">
-                  <label className="lable-class">Answer</label>
+                  <label className="lable-className">Answer</label>
                 </div>
                 <div className="col-md-4">
                   <select
@@ -143,7 +152,7 @@ class AddQuestion extends Component {
                   </select>
                 </div>
                 <div className="col-md-2 text-center">
-                  <label className="lable-class">Marks</label>
+                  <label className="lable-className">Marks</label>
                 </div>
                 <div className="col-md-4">
                   <input
@@ -168,11 +177,12 @@ class AddQuestion extends Component {
             </form>
           </div>
         </div>
-        {this.state.testQuestion?
-        <Showtest
-          testName={this.props.testname}
-          testQuestion={this.state.testQuestion}
-        ></Showtest>: null}
+        {this.state.testQuestion ? (
+          <Showtest
+            testName={this.props.testname}
+            testQuestion={this.state.testQuestion}
+          ></Showtest>
+        ) : null}
       </div>
     );
   }

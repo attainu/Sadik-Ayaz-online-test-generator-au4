@@ -31,15 +31,15 @@ class Test extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.state.testId ? (
             <AddQuestion
               testid={this.state.testId}
               testname={this.state.testName}
             ></AddQuestion>
         ) : (
-          <div className="card mx-auto col-md-6 mt-5">
-            <div className="card-body">
+          <div className="card mx-auto col-md-6 mt-5 card-dark color-blue-gradiant">
+            <div className="card-body bubble-shadow">
               <form className="" onSubmit={this.testHandler}>
                 <h3>Enter Test Name Here.</h3>
                 <div className="form-group">
@@ -61,7 +61,7 @@ class Test extends Component {
             </div>
           </div>
         )}
-      </div>
+     </React.Fragment>
     );
   }
 }
