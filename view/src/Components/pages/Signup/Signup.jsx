@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Signup.css";
+
 import axios from "axios";
 import { Redirect, Link } from "react-router-dom";
 
@@ -43,7 +44,8 @@ class SignUp extends Component {
 
     return (
       <div className="signup-wrapper">
-        <div className="signup-inner">
+        <Navbar/>
+        <div className="signup-inner w3-container w3-center w3-animate-opacity">
           <h3>Sign-Up</h3>
           <hr></hr>
           <form onSubmit={this.signupHandler}>

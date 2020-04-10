@@ -9,7 +9,7 @@ class About extends Component {
     return (
       <div>
         <Navbar></Navbar>
-        <div className="container">
+        <div className="container w3-container w3-center w3-animate-opacity">
           <div className="row">
             <div className="col-md-12 text-center p-3 mb-5 mt-5">
               <h1 className="display-3 text-center">About US</h1>

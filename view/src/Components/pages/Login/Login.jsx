@@ -3,6 +3,7 @@ import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 import app from "../../../appsBasic";
 import "./Login.css";
+import Navbar from "../../basic/Navbar";
 
 class Login extends Component {
   state = {
@@ -45,8 +46,10 @@ class Login extends Component {
       return <Redirect to="/dashboard"></Redirect>;
     }
     return (
+      
       <div className="signin-wrapper">
-        <div className="signin-inner">
+        <Navbar/>
+        <div className="signin-inner w3-container w3-center w3-animate-opacity">
           <h3>Sign-In</h3>
           <hr></hr>
           <form onSubmit={this.loginHandler}>
