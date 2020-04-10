@@ -49,7 +49,7 @@ class Login extends Component {
       
       <div className="signin-wrapper">
         <Navbar/>
-        <div className="signin-inner w3-container w3-center w3-animate-opacity">
+        <div className="signin-inner  w3-animate-opacity">
           <h3>Sign-In</h3>
           <hr></hr>
           <form onSubmit={this.loginHandler}>

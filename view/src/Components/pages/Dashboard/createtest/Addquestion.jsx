@@ -34,15 +34,6 @@ class AddQuestion extends Component {
       .post("http://localhost:5000/question/create", { question })
       .then((response) => {
         if (response.status === 200) {
-          this.setState({
-            question: null,
-            option1: null,
-            option2: null,
-            option3: null,
-            option4: null,
-            answer: null,
-            marks: 2,
-          });
           alert("queston added succesfullly");
         }
       })
