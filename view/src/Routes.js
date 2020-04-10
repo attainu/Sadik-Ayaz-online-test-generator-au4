@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Login from './Components/pages/Login/Login';
 import SignUp from './Components/pages/Signup/Signup';
 import Home from './Components/pages/Homepage/Home';
@@ -25,10 +25,10 @@ const Content = () => (
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} />
       <RequiresAuthentication path="/dashboard" component={Dashboard} />
-      <RequiresAuthentication path="/add-test" component={Test}/>
-      <RequiresAuthentication path="/test-history" component={TestHistory}/>
-      <RequiresAuthentication path="/profile" component={Profile}/>
-      <RequiresAuthentication path="/results" component={Results}/>
+      <RequiresAuthentication path="/add-test" component={Test} />
+      <RequiresAuthentication path="/test-history" component={TestHistory} />
+      <RequiresAuthentication path="/profile" component={Profile} />
+      <RequiresAuthentication path="/results" component={Results} />
     </Switch>
   </BrowserRouter>
 );
@@ -38,23 +38,27 @@ const RequiresAuthentication = ({ component: Component, ...rest }) => (
     {...rest}
     render={props =>
       apps.getToken() ? (
-     <div className="container-fluid">
-        <div className="row">
-            <Sidebar {...props}/> 
-            <div className="col md-10" style={{ padding: "0px" }}>
-                <Navbar name={app.getName()} token={apps.getToken()} />
+        <React.Fragment>
+          <Navbar name={app.getName()} token={apps.getToken()} />
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-md-2">
+                <Sidebar {...props} />
+              </div>
+              <div className="col-md-10">
                 <Component {...props} />
+              </div>
             </div>
-        </div>
-      </div>
+          </div>
+        </React.Fragment>
       ) : (
-        <Redirect
-          to={{
-            pathname: "/sign-in",
-            state: { from: props.location }
-          }}
-        />
-      )
+          <Redirect
+            to={{
+              pathname: "/sign-in",
+              state: { from: props.location }
+            }}
+          />
+        )
     }
   />
 );

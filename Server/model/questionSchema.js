@@ -20,4 +20,4 @@ const questionSchema = new mongoose.Schema({
 }, { collection: 'questions' });
 
 
-module.exports = User = mongoose.model('question',questionSchema);
+module.exports = User = mongoose.model('questions',questionSchema);

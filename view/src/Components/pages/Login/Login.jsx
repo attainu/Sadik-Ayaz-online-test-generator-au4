@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Input from "../../basic/Input";
 import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
+import app from "../../../appsBasic";
 import "./Login.css";
 import Navbar from "../../basic/Navbar";
 
@@ -12,7 +12,7 @@ class Login extends Component {
     loggedin: null,
   };
 
-  loginHandler = (event) => {
+  loginHandler = async (event) => {
     event.preventDefault();
 
     let { username, password } = this.state;
@@ -22,18 +22,23 @@ class Login extends Component {
       password,
     };
 
-    axios.post("http://localhost:5000/login", { user }).then((response) => {
-      if (response.data.status === 200) {
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("firstname", response.data.data.firstname);
-        localStorage.setItem("id", response.data.data._id);
-        this.setState({
-          loggedin: localStorage.getItem('token')
-        });
-      } else {
-        alert(response.data.message);
-      }
-    });
+    await axios
+      .post("http://localhost:5000/login", { user })
+      .then((response) => {
+        if (response.data.status === 200) {
+          app.setToken(response.data.token);
+          app.setName(
+            `${response.data.data.firstname} ${response.data.data.lastname}`
+          );
+          app.setUserId(response.data.data._id);
+
+          this.setState({
+            loggedin: app.getToken(),
+          });
+        } else {
+          alert(response.data.message);
+        }
+      });
   };
 
   render() {
@@ -48,22 +53,30 @@ class Login extends Component {
           <h3>Sign-In</h3>
           <hr></hr>
           <form onSubmit={this.loginHandler}>
-            <Input
-              value="Enter Email"
-              label="Email"
-              type="email"
-              handleChange={(event) => {
-                this.setState({ username: event.target.value });
-              }}
-            />
-            <Input
-              value="Enter Password"
-              label="Password"
-              type="password"
-              handleChange={(event) => {
-                this.setState({ password: event.target.value });
-              }}
-            />
+            <div className="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                className="form-control"
+                placeholder="ex. bruce@wyane.com"
+                autoComplete="current-password"
+                onChange={(event) => {
+                  this.setState({ username: event.target.value });
+                }}
+              ></input>
+            </div>
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="enter password"
+                autocomplete="current-password"
+                onChange={(event) => {
+                  this.setState({ password: event.target.value });
+                }}
+              ></input>
+            </div>
             <input
               type="submit"
               className="btn btn-dark btn-block"

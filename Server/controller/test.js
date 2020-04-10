@@ -1,6 +1,7 @@
 const Test = require('../model/testSchema');
 const User = require('../model/userSchema');
 const test = {};
+const moment = require('moment');
 
 test.create = async (request, response) => {
     try {
@@ -8,7 +9,8 @@ test.create = async (request, response) => {
         const { id, name } = request.body.test
 
         let tests = {
-            name
+            name,
+            time:moment().format('MMMM Do YYYY, h:mm:ss a')
         }
 
         let testModel = new Test(tests);
@@ -29,6 +31,23 @@ test.create = async (request, response) => {
             complete.user = { ...data }
             response.json(complete);
         }).catch(error => response.json(error));
+
+    }
+    catch (error) {
+        response.json(error.message);
+    }
+}
+
+test.readById = async (request, response) => {
+    try {
+        await Test.findOne({ _id: request.params.id })
+            .populate("questions")
+            .then((data) => {
+                response.json(data);
+            })
+            .catch((err) => {
+                response.json(err);
+            });
 
     }
     catch (error) {
