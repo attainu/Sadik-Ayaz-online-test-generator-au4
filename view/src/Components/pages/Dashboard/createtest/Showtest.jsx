@@ -25,10 +25,14 @@ const Showtest = (props) => {
                       <p className=" text-justify">{item.question}</p>
                     </div>
                     <div className="col-md-1 ml-auto">
-                      <button className="btn btn-outline-success"><i className="far fa-edit"></i></button>
+                      <button className="btn btn-outline-success">
+                        <i className="far fa-edit"></i>
+                      </button>
                     </div>
                     <div className="col-md-1 ml-auto">
-                      <button className="btn btn-outline-danger"><i className="fas fa-trash"></i></button>
+                      <button className="btn btn-outline-danger">
+                        <i className="fas fa-trash"></i>
+                      </button>
                     </div>
                   </div>
                   <div className="row">
@@ -70,7 +74,7 @@ const Showtest = (props) => {
         </div>
         <div className="row">
           <div className="col-3 mx-auto mb-3">
-            <button className="btn btn-block btn-success">Finish Test</button>
+            <button className="btn btn-block btn-success">Publish Test</button>
           </div>
         </div>
       </div>
