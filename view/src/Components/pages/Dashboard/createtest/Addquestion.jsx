@@ -34,7 +34,6 @@ class AddQuestion extends Component {
       .post("http://localhost:5000/question/create", { question })
       .then((response) => {
         if (response.status === 200) {
-         
           alert("queston added succesfullly");
         }
       })
