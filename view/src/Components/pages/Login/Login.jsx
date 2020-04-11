@@ -52,7 +52,7 @@ class Login extends Component {
         <div className="signin-inner  w3-animate-opacity">
           <h3>Sign-In</h3>
           <hr></hr>
-          <form onSubmit={this.loginHandler}>
+          <form onSubmit={this.loginHandler} className="subscribe-form">
             <div className="form-group">
               <label>Email</label>
               <input

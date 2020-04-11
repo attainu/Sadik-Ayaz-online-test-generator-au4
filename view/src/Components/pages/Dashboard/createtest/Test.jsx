@@ -40,13 +40,13 @@ class Test extends Component {
         ) : (
           <div className="card mx-auto col-md-6 mt-5 card-dark color-blue-gradiant">
             <div className="card-body bubble-shadow">
-              <form className="" onSubmit={this.testHandler}>
-                <h3>Enter Test Name Here.</h3>
+              <form className="question-form" onSubmit={this.testHandler}>
+                <h3  className="text-center heading-color">Enter Test Name Here.</h3>
                 <div className="form-group">
                   <input
-                    className="form-control"
+                    className="form-control text-capitalize"
                     type="text"
-                    placeholder="enter test name"
+                    placeholder="enter test name here"
                     onChange={(event) => {
                       this.setState({ testName: event.target.value });
                     }}

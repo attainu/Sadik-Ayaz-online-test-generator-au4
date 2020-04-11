@@ -56,9 +56,9 @@ class AddQuestion extends Component {
       <div className="col-10 mx-auto">
         <div className="card mt-1 mb-3">
           <div className="card-body">
-            <h3>Please Add Question</h3>
+            <h3 className="heading-color text-center">Please Add Question</h3>
             <hr></hr>
-            <form onSubmit={this.questionHandler}>
+            <form onSubmit={this.questionHandler} className="question-form">
               <div className="row form-group">
                 <div className="col-md-2">
                   <label className="lable-className">Question :</label>
