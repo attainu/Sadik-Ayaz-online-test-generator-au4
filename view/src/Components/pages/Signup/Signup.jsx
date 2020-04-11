@@ -48,7 +48,7 @@ class SignUp extends Component {
         <div className="signup-inner w3-animate-opacity">
           <h3 className="pb-0 pt-0">Sign-Up</h3>
           <hr></hr>
-          <form onSubmit={this.signupHandler}>
+          <form onSubmit={this.signupHandler} className="subscribe-form">
             <div className="form-group">
               <label>First Name</label>
               <input
@@ -65,7 +65,7 @@ class SignUp extends Component {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Enter last name name"
+                placeholder="Enter lastname"
                 onChange={(event) => {
                   this.setState({ lastname: event.target.value });
                 }}

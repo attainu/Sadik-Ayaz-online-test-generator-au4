@@ -9,7 +9,6 @@ import apps from './appsBasic';
 import PropTypes from "prop-types";
 import Sidebar from "./Components/basic/Sidebar";
 import Test from "./Components/pages/Dashboard/createtest/Test";
-import Navbar from "./Components/basic/Navbar";
 import app from "./appsBasic";
 import TestHistory from "./Components/pages/Dashboard/testhistory/TestHistory";
 import Profile from "./Components/pages/Dashboard/userprofile/Profile";
@@ -39,16 +38,11 @@ const RequiresAuthentication = ({ component: Component, ...rest }) => (
     render={props =>
       apps.getToken() ? (
         <React.Fragment>
-          <Navbar name={app.getName()} token={apps.getToken()} />
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-md-2">
-                <Sidebar {...props} />
-              </div>
-              <div className="col-md-10">
+          <div className="d-md-flex align-items-stretch">
+                <Sidebar {...props}  name={app.getName()}/>
+                <div id="content" className="p-4 p-md-5 pt-5 bg-light">
                 <Component {...props} />
               </div>
-            </div>
           </div>
         </React.Fragment>
       ) : (

@@ -48,13 +48,7 @@ class TestHistory extends Component {
               );
             })}
           </div>
-        ) : (
-          <div className="card mt-5">
-            <div className="card-body">
-              <h4 className="text-danger text-center">no test history!!!</h4>
-            </div>
-          </div>
-        )}
+        ) : null}
       </div>
     );
   }
