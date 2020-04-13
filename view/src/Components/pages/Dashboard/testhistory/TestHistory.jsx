@@ -10,9 +10,8 @@ class TestHistory extends Component {
     axios
       .get(`http://localhost:5000/user/read/${app.getUserId()}`)
       .then((response) => {
-        console.log(response.data.tests);
         this.setState({
-          testHistory: response.data.tests,
+          testHistory: response.data.tests.reverse(),
         });
       })
       .catch((error) => console.log(error));
@@ -20,8 +19,8 @@ class TestHistory extends Component {
 
   render() {
     return (
-      <div className="col-10 mx-auto">
-        <h1 className="mt-5">Test History</h1>
+      <div>
+        <h1>Test History</h1>
         {this.state.testHistory ? (
           <div>
             {this.state.testHistory.map((item, index) => {

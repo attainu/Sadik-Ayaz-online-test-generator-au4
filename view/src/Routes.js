@@ -14,7 +14,7 @@ import TestHistory from "./Components/pages/Dashboard/testhistory/TestHistory";
 import Profile from "./Components/pages/Dashboard/userprofile/Profile";
 import Results from "./Components/pages/Dashboard/testresults/Result";
 import About from './Components/pages/About/About';
-
+import UserTest from './Components/pages/Usertest/USertest';
 const Content = () => (
   <BrowserRouter>
     <Switch>
@@ -22,6 +22,7 @@ const Content = () => (
       <Route exact path="/logout" component={Logout} />
       <Route exact path="/sign-up" component={SignUp} />
       <Route exact path="/" component={Home} />
+      <Route path="/test/:id" component={UserTest} />
       <Route exact path="/about" component={About} />
       <RequiresAuthentication path="/dashboard" component={Dashboard} />
       <RequiresAuthentication path="/add-test" component={Test} />
@@ -39,10 +40,10 @@ const RequiresAuthentication = ({ component: Component, ...rest }) => (
       apps.getToken() ? (
         <React.Fragment>
           <div className="d-md-flex align-items-stretch">
-                <Sidebar {...props}  name={app.getName()}/>
-                <div id="content" className="p-4 p-md-5 pt-5 bg-light">
-                <Component {...props} />
-              </div>
+            <Sidebar {...props} name={app.getName()} />
+            <div id="content" className="p-4 p-md-5 pt-5 bg-light">
+              <Component {...props} />
+            </div>
           </div>
         </React.Fragment>
       ) : (

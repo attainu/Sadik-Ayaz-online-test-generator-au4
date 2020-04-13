@@ -172,6 +172,7 @@ class AddQuestion extends Component {
           <Showtest
             testName={this.props.testname}
             testQuestion={this.state.testQuestion}
+            publishTest = {this.props.publishTest}
           ></Showtest>
         ) : null}
       </div>
