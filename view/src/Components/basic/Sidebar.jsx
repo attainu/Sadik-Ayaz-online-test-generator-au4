@@ -38,7 +38,7 @@ class Sidebar extends Component {
                     color: "#ffa500 !important",
                   }}
                 >
-                  <i class="fas fa-home"></i> Home
+                  <i className="fas fa-home"></i> Home
                 </NavLink>
               </li>
               <li>
@@ -50,7 +50,7 @@ class Sidebar extends Component {
                     color: "red",
                   }}
                 >
-                  <i class="fas fa-plus-square"></i> Add Test
+                  <i className="fas fa-plus-square"></i> Add Test
                 </NavLink>
               </li>
               <li>
@@ -62,7 +62,7 @@ class Sidebar extends Component {
                     color: "red",
                   }}
                 >
-                  <i class="fas fa-history"></i> Test History
+                  <i className="fas fa-history"></i> Test History
                 </NavLink>
               </li>
               <li>
@@ -74,7 +74,7 @@ class Sidebar extends Component {
                     color: "red",
                   }}
                 >
-                  <i class="fas fa-user-circle"></i> Profile
+                  <i className="fas fa-user-circle"></i> Profile
                 </NavLink>
               </li>
               <li>
@@ -86,7 +86,7 @@ class Sidebar extends Component {
                     color: "red",
                   }}
                 >
-                  <i class="fas fa-poll"></i> Results
+                  <i className="fas fa-poll"></i> Results
                 </NavLink>
               </li>
             </ul>

@@ -74,7 +74,7 @@ const Showtest = (props) => {
         </div>
         <div className="row">
           <div className="col-3 mx-auto mb-3">
-            <button className="btn btn-block btn-success">Publish Test</button>
+            <button className="btn btn-block btn-success" onClick={props.publishTest}>Publish Test</button>
           </div>
         </div>
       </div>

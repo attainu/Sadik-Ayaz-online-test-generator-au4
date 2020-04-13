@@ -7,7 +7,8 @@ class Test extends Component {
   state = {
     testName: null,
     testId: null,
-    id: app.getUserId()
+    id: app.getUserId(),
+    publish: false,
   };
 
   testHandler = async (event) => {
@@ -29,39 +30,54 @@ class Test extends Component {
       .catch((error) => console.log(error));
   };
 
+  publishTestHandler = () => {
+    this.setState({ publish: true });
+  };
+
   render() {
     return (
       <React.Fragment>
-        {this.state.testId ? (
-            <AddQuestion
-              testid={this.state.testId}
-              testname={this.state.testName}
-            ></AddQuestion>
-        ) : (
-          <div className="card mx-auto col-md-6 mt-5 card-dark color-blue-gradiant">
-            <div className="card-body bubble-shadow">
-              <form className="question-form" onSubmit={this.testHandler}>
-                <h3  className="text-center heading-color">Enter Test Name Here.</h3>
-                <div className="form-group">
-                  <input
-                    className="form-control text-capitalize"
-                    type="text"
-                    placeholder="enter test name here"
-                    onChange={(event) => {
-                      this.setState({ testName: event.target.value });
-                    }}
-                  ></input>
+        {!this.state.publish ? (
+          <div>
+            {this.state.testId ? (
+              <AddQuestion
+                testid={this.state.testId}
+                testname={this.state.testName}
+                publishTest={this.publishTestHandler}
+              ></AddQuestion>
+            ) : (
+              <div className="card mx-auto col-md-6 mt-5 card-dark color-blue-gradiant">
+                <div className="card-body bubble-shadow">
+                  <form className="question-form" onSubmit={this.testHandler}>
+                    <h3 className="text-center heading-color">
+                      Enter Test Name Here.
+                    </h3>
+                    <div className="form-group">
+                      <input
+                        className="form-control text-capitalize"
+                        type="text"
+                        placeholder="enter test name here"
+                        onChange={(event) => {
+                          this.setState({ testName: event.target.value });
+                        }}
+                      ></input>
+                    </div>
+                    <input
+                      type="submit"
+                      className="btn btn-block btn-primary"
+                      value="create"
+                    />
+                  </form>
                 </div>
-                <input
-                  type="submit"
-                  className="btn btn-block btn-primary"
-                  value="create"
-                />
-              </form>
-            </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div>
+            <h1>{`${window.location.origin}/test/${this.state.testId}`}</h1>
           </div>
         )}
-     </React.Fragment>
+      </React.Fragment>
     );
   }
 }
