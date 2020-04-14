@@ -21,7 +21,7 @@ user.readById = async (request, response) => {
 
 user.updateById = async (request, response) => {
     try {
-        await User.findOneAndUpdate({ _id: request.params.id }, request.body, { new: true })
+        await User.findOneAndUpdate({ _id: request.params.id }, request.body.user, { new: true })
             .then(data => response.json(data))
             .catch(error => response.json(error));
     } catch (error) {
