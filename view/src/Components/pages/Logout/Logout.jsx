@@ -6,6 +6,8 @@ const logout = () => {
   app.removeToken();
   app.removeUserId();
   app.removeName();
+  app.removeTestId();
+  app.removeTestName();
   return <Redirect to="/"></Redirect>;
 };
 

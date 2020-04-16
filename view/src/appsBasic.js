@@ -34,6 +34,24 @@ var app = {
     },
     removeTestId: function () {
         return localStorage.removeItem("testid");
+    },
+    getTestName: function () {
+        return localStorage.getItem("testname");
+    },
+    setTestName: function (testid) {
+        return localStorage.setItem("testname", testid);
+    },
+    removeTestName: function () {
+        return localStorage.removeItem("testname");
+    },
+    getTestUrl: function () {
+        return localStorage.getItem("testurl");
+    },
+    setTestUrl: function (testid) {
+        return localStorage.setItem("testurl", testid);
+    },
+    removeTestUrl: function () {
+        return localStorage.removeItem("testurl");
     }
 
 };

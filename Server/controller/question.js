@@ -5,7 +5,7 @@ const question = {};
 question.create = async (request, response) => {
     try {
 
-        const { question, options, answer, marks, testId } = request.body.question
+        const { question, options, answer, marks, testId } = request.body
         let questions = {
             question,
             options,
@@ -29,5 +29,28 @@ question.create = async (request, response) => {
         response.json(error.message);
     }
 }
+
+
+question.updateById = async (request, response) => {
+    try {
+        await Question.findOneAndUpdate({ _id: request.params.id }, request.body, { new: true })
+            .then(data => response.json(data))
+            .catch(error => response.json(error));
+    } catch (error) {
+        response.json(error.message);
+    }
+}
+
+
+question.deleteById = async (request, response) => {
+    try {
+        await Question.findOneAndDelete({ _id: request.params.id })
+            .then(data => response.json(data))
+            .catch(error => response.json(error))
+    } catch (error) {
+        response.json(error.message);
+    }
+}
+
 
 module.exports = question;

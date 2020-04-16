@@ -10,6 +10,10 @@ const questionSchema = new mongoose.Schema({
         type: String,
         default: moment().format('MMMM Do YYYY, h:mm:ss a')
     },
+    publish:{
+        type:Boolean,
+        required: [true, 'publish is required']
+    },
     questions: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'questions'
