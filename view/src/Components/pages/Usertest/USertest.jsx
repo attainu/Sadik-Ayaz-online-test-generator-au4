@@ -8,6 +8,8 @@ class UserTEst extends Component {
     username: "sadik",
     testPaper: null,
     testName: null,
+    userAnswer: null,
+    userAnswerList:[]
   };
 
   componentDidMount() {
@@ -23,13 +25,19 @@ class UserTEst extends Component {
       })
       .catch((error) => console.log(error));
   }
+
+  userAnswerHandler = (event) => {
+    
+  };
+
   render() {
     return (
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-4 mx-auto mt-3">
             <h5 className="text-capitalize text-left">
-            <i class="fa fa-user" aria-hidden="true"></i> {this.state.username}
+              <i className="fa fa-user" aria-hidden="true"></i>{" "}
+              {this.state.username}
             </h5>
           </div>
           <div className="col-md-4 mx-auto mt-3">
