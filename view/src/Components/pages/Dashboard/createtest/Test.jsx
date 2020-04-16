@@ -16,6 +16,7 @@ class Test extends Component {
     let test = {
       id: this.state.id,
       name: this.state.testName,
+      publish: false
     };
 
     await axios
@@ -30,8 +31,15 @@ class Test extends Component {
       .catch((error) => console.log(error));
   };
 
+  saveTestHandler = () => {
+    this.setState({ publish: false });
+    //api call to save test with publish status as false 
+  };
+
   publishTestHandler = () => {
     this.setState({ publish: true });
+    //api call to save test with publish status as true
+    //http://localhost:5000/test/create
   };
 
   render() {
@@ -43,7 +51,7 @@ class Test extends Component {
               <AddQuestion
                 testid={this.state.testId}
                 testname={this.state.testName}
-                publishTest={this.publishTestHandler}
+                publishTest={this.saveTestHandler}
               ></AddQuestion>
             ) : (
               <div className="card mx-auto col-md-6 mt-5 card-dark color-blue-gradiant">

@@ -15,6 +15,7 @@ import Profile from "./Components/pages/Dashboard/userprofile/Profile";
 import Results from "./Components/pages/Dashboard/testresults/Result";
 import About from './Components/pages/About/About';
 import UserTest from './Components/pages/Usertest/USertest';
+import ShowTest from './Components/pages/Dashboard/createtest/Showtest';
 const Content = () => (
   <BrowserRouter>
     <Switch>
@@ -29,6 +30,7 @@ const Content = () => (
       <RequiresAuthentication path="/test-history" component={TestHistory} />
       <RequiresAuthentication path="/profile" component={Profile} />
       <RequiresAuthentication path="/results" component={Results} />
+      <RequiresAuthentication path="/show-test/:id" component={ShowTest} />
     </Switch>
   </BrowserRouter>
 );
