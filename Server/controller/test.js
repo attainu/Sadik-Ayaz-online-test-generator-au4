@@ -6,32 +6,33 @@ const moment = require('moment');
 test.create = async (request, response) => {
     try {
 
-        const { id, name } = request.body.test
+        const { id, name, publish } = request.body
 
-        let tests = {
+        let test = {
             name,
+            publish,
             time: moment().format('MMMM Do YYYY, h:mm:ss a')
         }
 
-        let testModel = new Test(tests);
+        let testModel = new Test(test);
         let complete = {
             test: "",
             user: ""
         }
         await testModel.save()
-        .then(data => {
-            complete.test = { ...data }
+            .then(data => {
+                complete.test = { ...data }
 
-            return User.findOneAndUpdate(
-                { _id: id },
-                { $push: { tests: data._id } },
-                { new: true }
-            );
+                return User.findOneAndUpdate(
+                    { _id: id },
+                    { $push: { tests: data._id } },
+                    { new: true }
+                );
 
-        }).then(data => {
-            complete.user = { ...data }
-            response.json(complete);
-        }).catch(error => response.json(error));
+            }).then(data => {
+                complete.user = { ...data }
+                response.json(complete);
+            }).catch(error => response.json(error));
 
     }
     catch (error) {
@@ -58,7 +59,7 @@ test.readById = async (request, response) => {
 
 test.updateById = async (request, response) => {
     try {
-        await Test.findOneAndUpdate({ _id: request.params.id },request.body, { new: true })
+        await Test.findOneAndUpdate({ _id: request.params.id }, request.body, { new: true })
             .then(data => response.status(200).json(data))
             .catch(error => response.json(error))
     } catch (error) {

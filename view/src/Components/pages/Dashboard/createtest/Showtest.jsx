@@ -1,4 +1,5 @@
 import React from "react";
+
 const Showtest = (props) => {
   return (
     <div className="card mb-5">
@@ -25,12 +26,18 @@ const Showtest = (props) => {
                       <p className=" text-justify">{item.question}</p>
                     </div>
                     <div className="col-md-1 ml-auto">
-                      <button className="btn btn-outline-success">
+                      <button
+                        className="btn btn-outline-success"
+                        onClick={()=>{props.editQuestion(item._id)}}
+                      >
                         <i className="far fa-edit"></i>
                       </button>
                     </div>
                     <div className="col-md-1 ml-auto">
-                      <button className="btn btn-outline-danger">
+                      <button
+                        className="btn btn-outline-danger"
+                        onClick={()=>{props.deleteQuestion(item._id)}}
+                      >
                         <i className="fas fa-trash"></i>
                       </button>
                     </div>
@@ -74,10 +81,20 @@ const Showtest = (props) => {
         </div>
         <div className="row">
           <div className="col-3 mx-auto mb-3">
-            <button className="btn btn-block btn-success" onClick={props.publishTest}>Save</button>
+            <button
+              className="btn btn-block btn-primary"
+              onClick={props.save}
+            >
+              Save
+            </button>
           </div>
           <div className="col-3 mx-auto mb-3">
-            <button className="btn btn-block btn-success" onClick={props.publishTest}>Save & Publish</button>
+            <button
+              className="btn btn-block btn-primary"
+              onClick={props.saveAndPublish}
+            >
+              Save & Publish
+            </button>
           </div>
         </div>
       </div>

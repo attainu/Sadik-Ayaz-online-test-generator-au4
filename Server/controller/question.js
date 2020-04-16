@@ -5,7 +5,7 @@ const question = {};
 question.create = async (request, response) => {
     try {
 
-        const { question, options, answer, marks, testId } = request.body.question
+        const { question, options, answer, marks, testId } = request.body
         let questions = {
             question,
             options,

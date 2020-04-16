@@ -12,7 +12,7 @@ const questionSchema = new mongoose.Schema({
     },
     publish:{
         type:Boolean,
-        default:false
+        required: [true, 'publish is required']
     },
     questions: [{
         type: mongoose.Schema.Types.ObjectId,
