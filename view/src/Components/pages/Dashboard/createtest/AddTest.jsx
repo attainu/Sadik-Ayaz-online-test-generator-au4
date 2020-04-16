@@ -3,7 +3,7 @@ import TestForm from "./testForm";
 import QuestionForm from "./QuestionForm";
 import Showtest from "./Showtest";
 import PublishTest from "./PublishTest";
-import Axios from "axios";
+import axios from "axios";
 import app from "../../../../appsBasic";
 class AddTest extends Component {
   state = {
@@ -22,7 +22,7 @@ class AddTest extends Component {
   };
 
   componentDidMount() {
-    Axios.get(`http://localhost:5000/test/read/${app.getTestId()}`)
+    axios.get(`http://localhost:5000/test/read/${app.getTestId()}`)
       .then((response) => {
         this.setState({
           questionPaper: [...response.data.questions],
@@ -40,7 +40,7 @@ class AddTest extends Component {
       publish: this.state.isPublished,
     };
 
-    await Axios.post("http://localhost:5000/test/create", testDetails)
+    await axios.post("http://localhost:5000/test/create", testDetails)
       .then((response) => {
         app.setTestId(response.data.test._doc._id);
         app.setTestName(response.data.test._doc.name);
@@ -68,7 +68,7 @@ class AddTest extends Component {
       marks: this.state.marks,
     };
 
-    await Axios.post("http://localhost:5000/question/create", question)
+    await axios.post("http://localhost:5000/question/create", question)
       .then((response) => {
         if (response.status === 200) {
           alert("queston added succesfullly");
@@ -93,7 +93,7 @@ class AddTest extends Component {
   };
 
   questionDeleteHandler = async (questionId) => {
-    await Axios.delete(`http://localhost:5000/question/delete/${questionId}`)
+    await axios.delete(`http://localhost:5000/question/delete/${questionId}`)
       .then((response) => {
         if (response.status === 200) {
           window.location.reload();
@@ -119,7 +119,7 @@ class AddTest extends Component {
       publish: true,
     };
 
-    await Axios.put(
+    await axios.put(
       `http://localhost:5000/test/update/${app.getTestId()}`,
       test
     )
