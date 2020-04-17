@@ -36,7 +36,7 @@ const HistoryTable = (props) => {
                   <span className="badge badge-dark">{index + 1}</span>
                 </td>
                 <td>
-                  <span className="badge badge-info">{item.name}</span>
+                  <span className="badge badge-info text-capitalize">{item.name}</span>
                 </td>
                 <td>
                   <span className="badge badge-warning">{item.time}</span>
@@ -54,7 +54,7 @@ const HistoryTable = (props) => {
                 )}
                 <td>
                   <button
-                    className="btn btn-sm btn-primary"
+                    className="btn btn-sm btn-primary text-capitalize"
                     disabled={item.publish ? false : true}
                   >
                     copy
@@ -62,22 +62,22 @@ const HistoryTable = (props) => {
                 </td>
                 {item.publish ? (
                   <td>
-                    <span className="badge badge-success">published</span>
+                    <span className="badge badge-success text-capitalize">published</span>
                   </td>
                 ) : (
                   <td>
-                    <span className="badge badge-danger">unpublished</span>
+                    <span className="badge badge-danger text-capitalize">unpublished</span>
                   </td>
                 )}
                 {item.publish ? (
                   <td>
-                    <button className="btn btn-sm btn-outline-danger">
+                    <button className="btn btn-sm btn-outline-danger text-capitalize">
                       unpublish
                     </button>
                   </td>
                 ) : (
                   <td>
-                    <button className="btn btn-sm btn-outline-success">
+                    <button className="btn btn-sm btn-outline-success text-capitalize">
                       publish
                     </button>
                   </td>
@@ -86,6 +86,7 @@ const HistoryTable = (props) => {
                   <button
                     className="btn btn-sm btn-outline-info mr-2"
                     disabled={item.publish ? true : false}
+                    onClick={()=>{props.editTest(item.name,item._id)}}
                   >
                     <i className="far fa-edit"></i>
                   </button>
@@ -94,6 +95,7 @@ const HistoryTable = (props) => {
                   <button
                     className="btn btn-sm btn-outline-danger mr-2"
                     disabled={item.publish ? true : false}
+                    onClick={()=>{props.deleteTest(item.name,item._id)}}
                   >
                     <i className="fas fa-trash"></i>
                   </button>
