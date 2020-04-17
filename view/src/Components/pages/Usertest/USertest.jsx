@@ -9,7 +9,7 @@ class UserTEst extends Component {
     testPaper: null,
     testName: null,
     userAnswer: null,
-    userAnswerList:[]
+    userAnswerList: [],
   };
 
   componentDidMount() {
@@ -17,18 +17,18 @@ class UserTEst extends Component {
       .get(`http://localhost:5000/test/read/${this.state.testId}`)
       .then((response) => {
         const questions = response.data.questions;
-        console.log(response.data);
-        this.setState({
-          testPaper: questions,
-          testName: response.data.name,
-        });
+        if (response.data.publish) {
+          this.setState({
+            testPaper: questions,
+            testName: response.data.name,
+            isPublished:response.data.publish
+          });
+        }
       })
       .catch((error) => console.log(error));
   }
 
-  userAnswerHandler = (event) => {
-    
-  };
+  userAnswerHandler = (event) => {};
 
   render() {
     return (
