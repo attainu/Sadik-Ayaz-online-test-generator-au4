@@ -42,7 +42,7 @@ class HistoryContainer extends Component {
   }
 
   render() {
-    return <div>{this.veiwHandler()}</div>;
+    return <div className="container">{this.veiwHandler()}</div>;
   }
 }
 
