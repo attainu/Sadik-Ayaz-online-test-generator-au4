@@ -3,9 +3,9 @@ const HistoryTable = (props) => {
   return (
     <div>
       <h1 className="profile-heading">Previous Tests</h1>
-      <table className="table table-hover text-capitalize">
+      <table className="table table-hover">
         <thead className="text-center">
-          <tr>
+          <tr className="text-capitalize">
             <th scope="col">sr.</th>
             <th scope="col">name</th>
             <th scope="col">date&time</th>
@@ -21,10 +21,16 @@ const HistoryTable = (props) => {
           {props.totalTest.map((item, index) => {
             return (
               <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{item.name}</td>
-                <td>{item.time}</td>
-                {item.publish ? <td>url</td> : <td>-</td>}
+                <td><span className="badge badge-dark">{index+1}</span></td>
+                <td><span className="badge badge-info">{item.name}</span></td>
+                <td><span className="badge badge-warning">{item.time}</span></td>
+                {item.publish ? (
+                  <td>
+                    <a href={item.url} className="badge badge-primary">{item.url}</a>
+                  </td>
+                ) : (
+                  <td><span>-</span></td>
+                )}
                 <td>
                   <button
                     className="btn btn-sm btn-primary"
@@ -34,9 +40,9 @@ const HistoryTable = (props) => {
                   </button>
                 </td>
                 {item.publish ? (
-                  <td className="text-success">published</td>
+                  <td><span className="badge badge-success">published</span></td>
                 ) : (
-                  <td className="text-danger">unpublished</td>
+                  <td><span className="badge badge-danger">unpublished</span></td>
                 )}
                 {item.publish ? (
                   <td>

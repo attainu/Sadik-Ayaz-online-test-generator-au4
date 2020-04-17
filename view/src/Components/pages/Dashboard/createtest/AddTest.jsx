@@ -117,6 +117,7 @@ class AddTest extends Component {
     const test = {
       _id: app.getTestId(),
       publish: true,
+      url:`${window.location.origin}/test/${app.getTestId()}`
     };
 
     await axios.put(
