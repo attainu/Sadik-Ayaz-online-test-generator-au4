@@ -30,10 +30,12 @@ class HistoryContainer extends Component {
   };
 
   editHandler = (testName, testId) => {
+
     console.log(`${testId} ${testName}`);
     app.setTestId(testId);
     app.setTestName(testName);
-    return <Redirect from="/test-history" to="/add-test" />;
+    return <Redirect to="/add-test"></Redirect>;
+  
   };
 
   deleteHandler = async (testName, testId) => {
@@ -46,6 +48,37 @@ class HistoryContainer extends Component {
         }
       })
       .catch((error) => console.log(error));
+  };
+
+  unpublishTest = (testId, index) => {
+    const test = {
+      _id: testId,
+      publish: false,
+    };
+
+    Axios.put(`http://localhost:5000/test/update/${testId}`, test)
+      .then((response) => {
+        console.log(response);
+        const testHistory = this.state.result.updateTestStatusOf(index);
+        this.setState({ testHistory });
+      })
+      .catch((error) => console.log(error));
+    return null;
+  };
+
+  publishTest = (testId, index) => {
+    const test = {
+      _id: testId,
+      publish: true
+    };
+    Axios.put(`http://localhost:5000/test/update/${testId}`, test)
+      .then((response) => {
+        console.log(response);
+        const testHistory = this.state.result.updateTestStatusOf(index);
+        this.setState({ testHistory });
+      })
+      .catch((error) => console.log(error));
+    return null;
   };
 
   veiwHandler() {
@@ -61,6 +94,8 @@ class HistoryContainer extends Component {
           totalTest={this.state.testHistory}
           editTest={this.editHandler}
           deleteTest={this.deleteHandler}
+          publishTest={this.publishTest}
+          unpublishTest={this.unpublishTest}
         />
       );
     }
