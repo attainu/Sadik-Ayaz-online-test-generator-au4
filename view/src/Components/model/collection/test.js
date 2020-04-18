@@ -11,4 +11,10 @@ export default class Tests {
     getTests() {
       return this.tests;
     }
+
+    updateTestStatusOf(index){
+      this.tests[index].publish = !this.tests[index].publish;
+      return this.tests;
+    }
+
   }

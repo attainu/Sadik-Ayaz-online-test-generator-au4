@@ -67,4 +67,15 @@ test.updateById = async (request, response) => {
     }
 }
 
+
+test.deleteById = async (request, response) => {
+    try {
+        await Test.findOneAndDelete({ _id: request.params.id })
+            .then(data => response.json(data))
+            .catch(error => response.json(error))
+    } catch (error) {
+        response.json(error.message);
+    }
+}
+
 module.exports = test;

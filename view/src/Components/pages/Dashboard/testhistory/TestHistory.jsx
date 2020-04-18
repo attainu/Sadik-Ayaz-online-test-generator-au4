@@ -8,6 +8,7 @@ class TestHistory extends Component {
   state = {
     testHistory: null,
     published: true,
+    result:  null,
   };
 
   componentDidMount() {
@@ -21,14 +22,13 @@ class TestHistory extends Component {
         console.log(result.getTests());
         this.setState({
           testHistory: result.getTests(),
+          result: result,
         });
       })
       .catch((error) => console.log(error));
   }
 
-  unpublishTest = (e) =>{
-    console.log(e.target.value);
-    const testId = e.target.value;
+  unpublishTest = (testId, index) =>{
     const test={
       _id: testId,
       publish: false
@@ -37,12 +37,12 @@ class TestHistory extends Component {
     axios.put(`http://localhost:5000/test/update/${testId}`, test)
     .then((response)=>{
       console.log(response);
+      const testHistory = this.state.result.updateTestStatusOf(index);
+      this.setState({testHistory});
     }).catch((error) => console.log(error));
     return null;
   }
-  publishTest = (e) =>{
-    console.log(e.target.value);
-    const testId = e.target.value;
+  publishTest = (testId, index) =>{
     const test={
       _id: testId,
       publish: true
@@ -50,6 +50,8 @@ class TestHistory extends Component {
     axios.put(`http://localhost:5000/test/update/${testId}`, test)
     .then((response)=>{
       console.log(response);
+      const testHistory = this.state.result.updateTestStatusOf(index);
+      this.setState({testHistory});
     }).catch((error) => console.log(error));
     return null;
   }
@@ -74,10 +76,10 @@ class TestHistory extends Component {
                 </ul>
               </div>
               <div className="col-2 ml-auto">
-                {testItem.getPublish() ? <button className="btn btn-outline-success" value={testItem.getId()} onClick={this.unpublishTest}>
+                {testItem.getPublish() ? <button className="btn btn-outline-success" value={testItem.getId()} onClick={()=>{this.unpublishTest(testItem.getId(),index)}}>
                 Unpublish
                 </button> :
-                <button className="btn btn-outline-primary" value={testItem.getId()} onClick={this.publishTest}>
+                <button className="btn btn-outline-primary" value={testItem.getId()} onClick={()=>{this.publishTest(testItem.getId(),index)}}>
                   Publish
                 </button>
               }

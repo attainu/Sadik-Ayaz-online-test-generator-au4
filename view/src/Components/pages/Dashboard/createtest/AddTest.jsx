@@ -3,7 +3,7 @@ import TestForm from "./testForm";
 import QuestionForm from "./QuestionForm";
 import Showtest from "./Showtest";
 import PublishTest from "./PublishTest";
-import Axios from "axios";
+import axios from "axios";
 import app from "../../../../appsBasic";
 class AddTest extends Component {
   state = {
@@ -18,18 +18,23 @@ class AddTest extends Component {
     option4: null,
     answer: null,
     marks: null,
-    questionPaper: null
+    questionPaper: null,
   };
 
   componentDidMount() {
-    Axios.get(`http://localhost:5000/test/read/${app.getTestId()}`)
+    this.fetchTest();
+  }
+
+  fetchTest = async () => {
+    await axios
+      .get(`http://localhost:5000/test/read/${app.getTestId()}`)
       .then((response) => {
         this.setState({
           questionPaper: [...response.data.questions],
         });
       })
       .catch((error) => console.log(error));
-  }
+  };
 
   addTestHandler = async (event) => {
     event.preventDefault();
@@ -40,7 +45,8 @@ class AddTest extends Component {
       publish: this.state.isPublished,
     };
 
-    await Axios.post("http://localhost:5000/test/create", testDetails)
+    await axios
+      .post("http://localhost:5000/test/create", testDetails)
       .then((response) => {
         app.setTestId(response.data.test._doc._id);
         app.setTestName(response.data.test._doc.name);
@@ -68,11 +74,12 @@ class AddTest extends Component {
       marks: this.state.marks,
     };
 
-    await Axios.post("http://localhost:5000/question/create", question)
+    await axios
+      .post("http://localhost:5000/question/create", question)
       .then((response) => {
         if (response.status === 200) {
           alert("queston added succesfullly");
-          window.location.reload();
+          this.fetchTest();
         }
       })
       .catch((error) => console.log(error));
@@ -93,10 +100,11 @@ class AddTest extends Component {
   };
 
   questionDeleteHandler = async (questionId) => {
-    await Axios.delete(`http://localhost:5000/question/delete/${questionId}`)
+    await axios
+      .delete(`http://localhost:5000/question/delete/${questionId}`)
       .then((response) => {
         if (response.status === 200) {
-          window.location.reload();
+          this.fetchTest();
         }
       })
       .catch((error) => console.log(error));
@@ -108,23 +116,23 @@ class AddTest extends Component {
     this.setState({
       testName: null,
       testId: null,
+      questionPaper: null
     });
     alert("test saved successfully");
-    window.location.reload();
+    //window.location.reload();
   };
 
   saveAndPublishHandler = async () => {
     const test = {
       _id: app.getTestId(),
       publish: true,
+      url: `${window.location.origin}/test/${app.getTestId()}`,
     };
 
-    await Axios.put(
-      `http://localhost:5000/test/update/${app.getTestId()}`,
-      test
-    )
+    await axios
+      .put(`http://localhost:5000/test/update/${app.getTestId()}`, test)
       .then((response) => {
-        app.setTestUrl(`${window.location.origin}/test/${app.getTestId()}`)
+        app.setTestUrl(`${window.location.origin}/test/${app.getTestId()}`);
         this.setState({
           isPublished: response.data.publish,
         });
@@ -152,7 +160,7 @@ class AddTest extends Component {
         />
       );
     } else if (this.state.isPublished) {
-      return <PublishTest/>;
+      return <PublishTest />;
     } else {
       return (
         <React.Fragment>
