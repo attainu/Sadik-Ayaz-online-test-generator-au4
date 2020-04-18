@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 const HistoryTable = (props) => {
   return (
     <React.Fragment>
@@ -19,7 +20,8 @@ const HistoryTable = (props) => {
           <tr>
             <th scope="col">SR.</th>
             <th scope="col">NAME</th>
-            <th scope="col">DATE & TIME</th>
+            <th scope="col">DATE & TIME</th> 
+            {/* <i class="fa fa-sort" aria-hidden="true"></i> */}
             <th scope="col">URL</th>
             <th scope="col">COPY</th>
             <th scope="col">STATUS</th>
@@ -58,6 +60,10 @@ const HistoryTable = (props) => {
                   <button
                     className="btn btn-sm btn-primary text-capitalize"
                     disabled={item.publish ? false : true}
+                    onClick={() => {
+                      navigator.clipboard.writeText(item.url);
+                      alert("copied");
+                    }}
                   >
                     copy
                   </button>
@@ -99,7 +105,7 @@ const HistoryTable = (props) => {
                   </td>
                 )}
                 <td>
-                  <button
+                <Link to="/add-test">  <button
                     className="btn btn-sm btn-outline-info mr-2"
                     disabled={item.publish ? true : false}
                     onClick={() => {
@@ -108,6 +114,7 @@ const HistoryTable = (props) => {
                   >
                     <i className="far fa-edit"></i>
                   </button>
+                  </Link>
                 </td>
                 <td>
                   <button

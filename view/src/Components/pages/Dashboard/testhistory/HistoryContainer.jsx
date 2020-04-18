@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import HistoryTable from "./HistoryTable";
 import app from "../../../../appsBasic";
 import Tests from "../../../model/collection/test";
-//import Test from "../../../model/test";
-import { Redirect } from "react-router-dom";
 import Axios from "axios";
 
 class HistoryContainer extends Component {
@@ -34,8 +32,6 @@ class HistoryContainer extends Component {
     console.log(`${testId} ${testName}`);
     app.setTestId(testId);
     app.setTestName(testName);
-    return <Redirect to="/add-test"></Redirect>;
-  
   };
 
   deleteHandler = async (testName, testId) => {
@@ -76,6 +72,8 @@ class HistoryContainer extends Component {
         console.log(response);
         const testHistory = this.state.result.updateTestStatusOf(index);
         this.setState({ testHistory });
+        app.removeTestName();
+        app.removeTestId();
       })
       .catch((error) => console.log(error));
     return null;
