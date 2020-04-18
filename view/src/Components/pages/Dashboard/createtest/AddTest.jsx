@@ -165,8 +165,6 @@ class AddTest extends Component {
         }
       })
       .catch((error) => console.log(error));
-
-    //alert("successfully save & publish");
   };
 
   viewHandler = () => {
