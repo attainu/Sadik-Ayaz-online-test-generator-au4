@@ -8,6 +8,7 @@ const logout = () => {
   app.removeName();
   app.removeTestId();
   app.removeTestName();
+  app.removeTestUrl();
   return <Redirect to="/"></Redirect>;
 };
 
