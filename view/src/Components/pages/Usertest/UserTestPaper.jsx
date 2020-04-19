@@ -1,7 +1,7 @@
 import React from "react";
 
 const UserTestPaper = (props) => {
-  console.log(props);
+  // console.log(props.testPaper.getQuestions());
   return (
     <div className="container-fluid">
       <div className="row">
@@ -19,7 +19,7 @@ const UserTestPaper = (props) => {
       </div>
       <hr className="m-0"></hr>
       <div className="container">
-        {props.testPaper.map((item, index) => {
+        {props.testPaper.getQuestions().map((item, index) => {
           return (
             <div className="row" key={index}>
               <div className="col-8 mx-auto mt-3">
@@ -30,7 +30,7 @@ const UserTestPaper = (props) => {
                         <label>Question {index + 1}</label>
                       </div>
                       <div className="col-12 question-text text-justify">
-                        <label>{item.question}</label>
+                        <label>{item.question.question}</label>
                       </div>
                     </div>
                     <div className="row">
@@ -40,44 +40,52 @@ const UserTestPaper = (props) => {
                             <input
                               type="radio"
                               className="choice-input"
-                              name="answer"
-                              value={item.options.option1}
+                              name={item.question._id}
+                              id={index+item.question.options.option1+'1'}
+                              value={item.question.options.option1}
+                              onChange={(e)=>{props.answerHandler(e, index)}}
                             ></input>
-                            <label className="question-choice-label">
-                              {item.options.option1}
+                            <label htmlFor={index+item.question.options.option1+'1'} className="question-choice-label">
+                              {item.question.options.option1}
                             </label>
                           </li>
                           <li className="question-choice">
                             <input
                               type="radio"
                               className="choice-input"
-                              name="answer"
-                              value={item.options.option2}
+                              name={item.question._id}
+                              id={index+item.question.options.option2+'2'}
+                              value={item.question.options.option2}
+                              onChange={(e)=>{props.answerHandler(e, index)}}
                             ></input>
-                            <label className="question-choice-label">
-                              {item.options.option2}
+                            <label htmlFor={index+item.question.options.option2+'2'} className="question-choice-label">
+                              {item.question.options.option2}
                             </label>
                           </li>
                           <li className="question-choice">
                             <input
                               type="radio"
                               className="choice-input"
-                              name="answer"
-                              value={item.options.option3}
+                              name={item.question._id}
+                              id={index+item.question.options.option3+'3'}
+                              value={item.question.options.option3}
+                              onChange={(e)=>{props.answerHandler(e, index)}}
                             ></input>
-                            <label className="question-choice-label">
-                              {item.options.option3}
+                            <label htmlFor={index+item.question.options.option3+'3'} className="question-choice-label">
+                              {item.question.options.option3}
                             </label>
                           </li>
                           <li className="question-choice">
                             <input
                               type="radio"
                               className="choice-input"
-                              name="answer"
-                              value={item.options.option4}
+                              name={item.question._id}
+                              id={index+item.question.options.option4+'4'}
+                              value={item.question.options.option4}
+                              onChange={(e)=>{props.answerHandler(e, index)}}
                             ></input>
-                            <label className="question-choice-label">
-                              {item.options.option4}
+                            <label htmlFor={index+item.question.options.option4+'4'} className="question-choice-label">
+                              {item.question.options.option4}
                             </label>
                           </li>
                         </ul>
@@ -91,7 +99,7 @@ const UserTestPaper = (props) => {
         })}
         <div className="row">
             <div className="col-3 mx-auto mt-3 mb-5 ">
-                <button className="btn btn-block btn-primary">Submit Test</button>
+                <button className="btn btn-block btn-primary" onClick={props.submitTest}>Submit Test</button>
             </div>
         </div>
       </div>

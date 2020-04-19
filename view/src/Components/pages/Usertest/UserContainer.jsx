@@ -6,6 +6,7 @@ import swal from "sweetalert";
 import Error from "./Error";
 import UserTestPaper from "./UserTestPaper";
 import app from "../../../appsBasic";
+import Questions from "../../model/collection/questions";
 
 class UserContainer extends Component {
   state = {
@@ -23,7 +24,7 @@ class UserContainer extends Component {
         const questions = [...response.data.questions];
         if (response.data.publish) {
           this.setState({
-            testPaper: questions,
+            testPaper: new Questions(questions),
             testName: response.data.name,
             isPublished: response.data.publish,
           });
@@ -55,6 +56,7 @@ class UserContainer extends Component {
     }
   };
 
+
   veiwHandler = () => {
     if (!this.state.isPublished) {
       return <Error></Error>;
@@ -66,9 +68,27 @@ class UserContainer extends Component {
         ></UserForm>
       );
     } else {
-      return <UserTestPaper {...this.state}></UserTestPaper>;
+      return <UserTestPaper 
+              {...this.state}
+              answerHandler={this.answerHandler}
+              submitTest={this.submitTest}
+      ></UserTestPaper>;
     }
   };
+
+  submitTest = () => {
+  //  axios.post
+  console.log(this.state.testPaper.getResult());
+  }
+
+  answerHandler = (event, index) =>{
+    const answer = event.target.value;
+    const questionId =event.target.name;
+    this.state.testPaper.setResult(questionId, answer);
+    this.setState({
+      questionId : answer
+    });
+  }
 
   render() {
     return <div>{this.veiwHandler()}</div>;
