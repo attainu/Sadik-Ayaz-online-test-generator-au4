@@ -52,7 +52,7 @@ class Login extends Component {
         <div className="signin-inner  w3-animate-opacity">
           <h3>Sign-In</h3>
           <hr></hr>
-          <form onSubmit={this.loginHandler} className="subscribe-form">
+          <form onSubmit={this.loginHandler, this.onubmit} className="subscribe-form">
             <div className="form-group">
               <label>Email</label>
               <input
@@ -63,6 +63,8 @@ class Login extends Component {
                 onChange={(event) => {
                   this.setState({ username: event.target.value });
                 }}
+                  required
+                
               ></input>
             </div>
             <div className="form-group">
@@ -75,6 +77,7 @@ class Login extends Component {
                 onChange={(event) => {
                   this.setState({ password: event.target.value });
                 }}
+                required
               ></input>
             </div>
             <input
