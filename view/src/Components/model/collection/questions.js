@@ -28,7 +28,7 @@ export default class Questions {
   }
 
   getTotalMarks() {
-    this.totalmarks.reduce((acc, cur) => {
+    return this.totalmarks.reduce((acc, cur) => {
       acc = acc + cur;
       return acc;
     }, 0)

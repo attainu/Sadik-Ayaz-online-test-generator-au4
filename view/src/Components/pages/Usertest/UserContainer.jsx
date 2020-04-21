@@ -26,10 +26,12 @@ class UserContainer extends Component {
       .then((response) => {
         const questions = [...response.data.questions];
         if (response.data.publish) {
+          const questionPaper= new Questions(questions);
           this.setState({
-            testPaper: new Questions(questions),
+            testPaper: questionPaper,
             testName: response.data.name,
-            isPublished: response.data.publish
+            isPublished: response.data.publish,
+            totalMarks: questionPaper.getTotalMarks(),
           });
         }
       })
