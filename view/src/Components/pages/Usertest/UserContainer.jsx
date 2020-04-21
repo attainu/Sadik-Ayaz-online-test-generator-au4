@@ -16,6 +16,7 @@ class UserContainer extends Component {
     testId: this.props.match.params.id,
     isPublished: null,
     testName: null,
+    questionCollection: [],
   };
 
   fetchTest = () => {
@@ -57,16 +58,15 @@ class UserContainer extends Component {
         .then((response) => {
           if (response.status === 200) {
             swal("Success!!", "redirected...", "success").then(() => {
-
               app.setIsDisplay(response.data.success);
               app.setStudentId(response.data._id);
               app.setStudentname(response.data.name);
-              
+
               let studentDetails = {
                 StudentId: response.data._id,
                 StudentName: response.data.name,
               };
-              
+
               const student = new Student(studentDetails);
               this.setState({
                 username: student.getStudentDetails().StudentName,
@@ -102,7 +102,9 @@ class UserContainer extends Component {
   submitTest = async () => {
     let result = {
       testId: this.state.testId,
-      testResponse: this.state.testPaper.getResult(),
+      userId: this.state.userId,
+      username: this.state.username,
+      testResponse: this.state.questionCollection,
     };
 
     await axios
@@ -119,9 +121,14 @@ class UserContainer extends Component {
   answerHandler = (event, index) => {
     const answer = event.target.value;
     const questionId = event.target.name;
+    const answercollection = {
+      questionId,
+      answer,
+    };
     this.state.testPaper.setResult(questionId, answer);
     this.setState({
       questionId: answer,
+      questionCollection: [...this.state.questionCollection, answercollection],
     });
   };
 
