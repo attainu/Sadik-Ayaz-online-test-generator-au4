@@ -7,14 +7,15 @@ import Error from "./Error";
 import UserTestPaper from "./UserTestPaper";
 import app from "../../../appsBasic";
 import Questions from "../../model/collection/questions";
+import Student from "../../model/collection/student";
 
 class UserContainer extends Component {
   state = {
-    username: null,
+    username: app.getStudentname(),
+    userId: app.getStudentId(),
     testId: this.props.match.params.id,
     isPublished: null,
     testName: null,
-    isDisplay: app.getIsDisplay(),
   };
 
   fetchTest = () => {
@@ -48,14 +49,34 @@ class UserContainer extends Component {
     if (!this.state.username) {
       swal("Username is Required", "something went wrong", "error");
     } else {
-      swal("Success!!", "redirected...", "success").then(() => {
-        this.setState({
-          isDisplay: app.setIsDisplay(true),
+      axios
+        .post(`http://localhost:5000/student/create`, {
+          name: this.state.username,
+          success: true,
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            swal("Success!!", "redirected...", "success").then(() => {
+
+              app.setIsDisplay(response.data.success);
+              app.setStudentId(response.data._id);
+              app.setStudentname(response.data.name);
+              
+              let studentDetails = {
+                StudentId: response.data._id,
+                StudentName: response.data.name,
+              };
+              
+              const student = new Student(studentDetails);
+              this.setState({
+                username: student.getStudentDetails().StudentName,
+                userId: student.getStudentDetails().StudentId,
+              });
+            });
+          }
         });
-      });
     }
   };
-
 
   veiwHandler = () => {
     if (!this.state.isPublished) {
@@ -68,30 +89,44 @@ class UserContainer extends Component {
         ></UserForm>
       );
     } else {
-      return <UserTestPaper 
-              {...this.state}
-              answerHandler={this.answerHandler}
-              submitTest={this.submitTest}
-      ></UserTestPaper>;
+      return (
+        <UserTestPaper
+          {...this.state}
+          answerHandler={this.answerHandler}
+          submitTest={this.submitTest}
+        ></UserTestPaper>
+      );
     }
   };
 
-  submitTest = () => {
-  //  axios.post
-  console.log(this.state.testPaper.getResult());
-  }
+  submitTest = async () => {
+    let result = {
+      testId: this.state.testId,
+      testResponse: this.state.testPaper.getResult(),
+    };
 
-  answerHandler = (event, index) =>{
+    await axios
+      .post(`http://localhost:5000/result`, result)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response);
+          alert("success");
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
+  answerHandler = (event, index) => {
     const answer = event.target.value;
-    const questionId =event.target.name;
+    const questionId = event.target.name;
     this.state.testPaper.setResult(questionId, answer);
     this.setState({
-      questionId : answer
+      questionId: answer,
     });
-  }
+  };
 
   render() {
-    return <div>{this.veiwHandler()}</div>;
+    return <React.Fragment>{this.veiwHandler()}</React.Fragment>;
   }
 }
 

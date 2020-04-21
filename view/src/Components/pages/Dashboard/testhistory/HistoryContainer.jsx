@@ -72,9 +72,11 @@ class HistoryContainer extends Component {
         console.log(response);
         const testHistory = this.state.result.updateTestStatusOf(index);
         this.setState({ testHistory });
+
         app.removeTestName();
         app.removeTestId();
         app.removeIsDisplay();
+        
       })
       .catch((error) => console.log(error));
     return null;

@@ -1,7 +1,6 @@
 import React from "react";
 
 const UserTestPaper = (props) => {
-  // console.log(props.testPaper.getQuestions());
   return (
     <div className="container-fluid">
       <div className="row">

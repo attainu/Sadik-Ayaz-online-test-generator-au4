@@ -61,6 +61,24 @@ var app = {
     },
     removeIsDisplay: function () {
         return localStorage.removeItem("isdisplay");
+    },
+    getStudentname: function () {
+        return localStorage.getItem("studentname");
+    },
+    setStudentname: function (studentname) {
+        return localStorage.setItem("studentname",studentname);
+    },
+    removeStudentname: function () {
+        return localStorage.removeItem("studentname");
+    },
+    getStudentId: function () {
+        return localStorage.getItem("studentid");
+    },
+    setStudentId: function (studentid) {
+        return localStorage.setItem("studentid",studentid);
+    },
+    removeStudentId: function () {
+        return localStorage.removeItem("studentid");
     }
 
 };
