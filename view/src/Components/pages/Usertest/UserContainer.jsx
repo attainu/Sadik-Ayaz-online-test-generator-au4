@@ -17,6 +17,7 @@ class UserContainer extends Component {
     isPublished: null,
     testName: null,
     questionCollection: [],
+    totalMarks: null
   };
 
   fetchTest = () => {
@@ -28,7 +29,7 @@ class UserContainer extends Component {
           this.setState({
             testPaper: new Questions(questions),
             testName: response.data.name,
-            isPublished: response.data.publish,
+            isPublished: response.data.publish
           });
         }
       })
@@ -131,7 +132,7 @@ class UserContainer extends Component {
       questionCollection: [...this.state.questionCollection, answercollection],
     });
   };
-
+  
   render() {
     return <React.Fragment>{this.veiwHandler()}</React.Fragment>;
   }
