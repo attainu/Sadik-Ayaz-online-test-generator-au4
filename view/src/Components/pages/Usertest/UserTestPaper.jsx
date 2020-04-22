@@ -13,7 +13,7 @@ const UserTestPaper = (props) => {
           <p className="text-center">{props.testName}</p>
         </div>
         <div className="col mt-2 text-capitalize">
-          <p className="text-right">20</p>
+  <p className="text-right">Points : {props.totalMarks}</p>
         </div>
       </div>
       <hr className="m-0"></hr>
@@ -25,8 +25,10 @@ const UserTestPaper = (props) => {
                 <div className="card">
                   <div className="card-body">
                     <div className="row question-header">
-                      <div className="col-12 question-number">
-                        <label>Question {index + 1}</label>
+                    <div className="col-6 question-number text-left">
+                        <h6>Question {index + 1}</h6>
+                      </div><div className="col-6 question-number text-right">
+                        <h6>{item.question.marks} point</h6>
                       </div>
                       <div className="col-12 question-text text-justify">
                         <label>{item.question.question}</label>
@@ -42,7 +44,7 @@ const UserTestPaper = (props) => {
                               name={item.question._id}
                               id={index+item.question.options.option1+'1'}
                               value={item.question.options.option1}
-                              onChange={(e)=>{props.answerHandler(e, index)}}
+                              onChange={(e)=>{props.answerHandler(e, index,item.question.marks)}}
                             ></input>
                             <label htmlFor={index+item.question.options.option1+'1'} className="question-choice-label">
                               {item.question.options.option1}
@@ -55,7 +57,7 @@ const UserTestPaper = (props) => {
                               name={item.question._id}
                               id={index+item.question.options.option2+'2'}
                               value={item.question.options.option2}
-                              onChange={(e)=>{props.answerHandler(e, index)}}
+                              onChange={(e)=>{props.answerHandler(e, index,item.question.marks)}}
                             ></input>
                             <label htmlFor={index+item.question.options.option2+'2'} className="question-choice-label">
                               {item.question.options.option2}
@@ -68,7 +70,7 @@ const UserTestPaper = (props) => {
                               name={item.question._id}
                               id={index+item.question.options.option3+'3'}
                               value={item.question.options.option3}
-                              onChange={(e)=>{props.answerHandler(e, index)}}
+                              onChange={(e)=>{props.answerHandler(e, index,item.question.marks)}}
                             ></input>
                             <label htmlFor={index+item.question.options.option3+'3'} className="question-choice-label">
                               {item.question.options.option3}
@@ -81,7 +83,7 @@ const UserTestPaper = (props) => {
                               name={item.question._id}
                               id={index+item.question.options.option4+'4'}
                               value={item.question.options.option4}
-                              onChange={(e)=>{props.answerHandler(e, index)}}
+                              onChange={(e)=>{props.answerHandler(e, index,item.question.marks)}}
                             ></input>
                             <label htmlFor={index+item.question.options.option4+'4'} className="question-choice-label">
                               {item.question.options.option4}

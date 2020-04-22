@@ -13,12 +13,13 @@ router.post('/login', authentication.login);
 router.post('/question/create', question.create);
 router.post('/test/create', test.create);
 router.post('/student/create', student.create);
-router.post('/result', result.getResponse);
+router.post('/result/create', result.create);
 
 // read
 router.get('/test/read/:id', test.readById);
 router.get('/user/read/:id', user.readById);
 router.get('/student/read/:id', student.readById);
+router.get('/result/read/:id', result.read);
 
 //update
 router.put('/test/update/:id', test.updateById);

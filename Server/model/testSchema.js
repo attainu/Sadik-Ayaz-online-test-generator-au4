@@ -12,9 +12,13 @@ const questionSchema = new mongoose.Schema({
     },
     url: {
         type: String,
-     },
-    publish:{
-        type:Boolean,
+    },
+    totalmarks: {
+        type:Number,
+        default:0
+    },
+    publish: {
+        type: Boolean,
         required: [true, 'publish is required']
     },
     questions: [{

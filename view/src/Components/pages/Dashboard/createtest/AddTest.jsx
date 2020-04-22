@@ -21,6 +21,7 @@ class AddTest extends Component {
     answer: null,
     marks: null,
     questionPaper: null,
+    totalMarks: null,
   };
 
   componentDidMount() {
@@ -30,9 +31,11 @@ class AddTest extends Component {
   fetchTest = async () => {
     await axios
       .get(`http://localhost:5000/test/read/${app.getTestId()}`)
-      .then((response) => {
+      .then((response) => {  
+        console.log(response.data);
         this.setState({
           questionPaper: [...response.data.questions],
+          totalMarks:response.data.totalmarks
         });
       })
       .catch((error) => console.log(error));
@@ -87,9 +90,9 @@ class AddTest extends Component {
       .post("http://localhost:5000/question/create", question)
       .then((response) => {
         if (response.status === 200) {
-          swal("Success!!", "Question Added", "success").then(() =>
-            this.fetchTest()
-          );
+          swal("Success!!", "Question Added", "success").then(() => {
+            this.fetchTest();
+          });
         }
       })
       .catch((error) => console.log(error));
@@ -196,6 +199,7 @@ class AddTest extends Component {
             <Showtest
               testName={this.state.testName}
               testQuestion={this.state.questionPaper}
+              totalMarks={this.state.totalMarks}
               editQuestion={this.questionEditHandler}
               deleteQuestion={this.questionDeleteHandler}
               save={this.saveHandler}

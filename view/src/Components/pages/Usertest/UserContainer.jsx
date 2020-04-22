@@ -17,7 +17,7 @@ class UserContainer extends Component {
     isPublished: null,
     testName: null,
     questionCollection: [],
-    totalMarks: null
+    totalMarks: null,
   };
 
   fetchTest = () => {
@@ -26,12 +26,12 @@ class UserContainer extends Component {
       .then((response) => {
         const questions = [...response.data.questions];
         if (response.data.publish) {
-          const questionPaper= new Questions(questions);
+          const questionPaper = new Questions(questions);
           this.setState({
             testPaper: questionPaper,
             testName: response.data.name,
             isPublished: response.data.publish,
-            totalMarks: questionPaper.getTotalMarks(),
+            totalMarks: response.data.totalmarks,
           });
         }
       })
@@ -81,6 +81,54 @@ class UserContainer extends Component {
     }
   };
 
+  submitTest = async () => {
+    let result = {
+      testId: this.state.testId,
+      userId: this.state.userId,
+      totalMarks: this.state.totalmarks,
+      username: this.state.username,
+      testResponse: this.state.questionCollection,
+    };
+
+    await axios
+      .post(`http://localhost:5000/result/create`, result)
+      .then((response) => {
+        if (response.status === 200) {
+          swal("Test Submited!!", "redirected...", "success").then(() => {
+            app.removeIsDisplay();
+            app.removeStudentId();
+            app.removeStudentname();
+            this.setState({
+              username: null,
+              userId: null,
+              testId: null,
+              isPublished: null,
+              testName: null,
+              questionCollection: null,
+              totalMarks: null,
+            });
+          });
+        } else {
+          swal("Error", "something went wrong...", "error");
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
+  answerHandler = (event, index, marks) => {
+    const answer = event.target.value;
+    const questionId = event.target.name;
+    const answercollection = {
+      _id: questionId,
+      answer,
+      marks,
+    };
+    this.state.testPaper.setResult(questionId, answer);
+    this.setState({
+      questionCollection: [...this.state.questionCollection, answercollection],
+    });
+  };
+
   veiwHandler = () => {
     if (!this.state.isPublished) {
       return <Error></Error>;
@@ -102,39 +150,6 @@ class UserContainer extends Component {
     }
   };
 
-  submitTest = async () => {
-    let result = {
-      testId: this.state.testId,
-      userId: this.state.userId,
-      username: this.state.username,
-      testResponse: this.state.questionCollection,
-    };
-
-    await axios
-      .post(`http://localhost:5000/result`, result)
-      .then((response) => {
-        if (response.status === 200) {
-          console.log(response);
-          alert("success");
-        }
-      })
-      .catch((error) => console.log(error));
-  };
-
-  answerHandler = (event, index) => {
-    const answer = event.target.value;
-    const questionId = event.target.name;
-    const answercollection = {
-      questionId,
-      answer,
-    };
-    this.state.testPaper.setResult(questionId, answer);
-    this.setState({
-      questionId: answer,
-      questionCollection: [...this.state.questionCollection, answercollection],
-    });
-  };
-  
   render() {
     return <React.Fragment>{this.veiwHandler()}</React.Fragment>;
   }

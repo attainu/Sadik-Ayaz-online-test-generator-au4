@@ -1,93 +1,62 @@
 import React, { Component } from "react";
 import "./Result.css";
+import app from "../../../../appsBasic";
+import axios from "axios";
+import TestList from "./testList";
+
 class Result extends Component {
   state = {
     isExpand: false,
+    testDetails: null,
+    testId:null
   };
 
-  expandHandler = () => {
+  expandHandler = (event) => {
+    console.log(event.target.value);
+    
     this.setState({
       isExpand: !this.state.isExpand,
     });
   };
 
-  render() {
-    return (
-      <div>
-        <h1 className="result-heading">Results</h1>
-        <div className="row">
-          <div className="col">
-            <ul className="list-group">
-              <li className="list-group-item">
-                {this.state.isExpand ? (
-                  <button
-                    className="btn text-danger mr-auto"
-                    onClick={this.expandHandler}
-                  >
-                    <i class="fa fa-minus" aria-hidden="true"></i>
-                  </button>
-                ) : (
-                  <button
-                    className="btn text-success ml-auto"
-                    onClick={this.expandHandler}
-                  >
-                    <i class="fa fa-plus" aria-hidden="true"></i>
-                  </button>
-                )}
-                <span>Test Name</span>
-              </li>
-              {this.state.isExpand ? (
-                <table className="table table-striped .table-hover">
-                  <thead>
-                    <tr>
-                      <th>sr</th>
-                      <th>name</th>
-                      <th>score</th>
-                      <th>%</th>
-                      <th>pass</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>sss</td>
-                      <td>ss</td>
-                      <td>ss</td>
-                      <td>sss</td>
-                      <td>sss</td>
-                    </tr>
-                    <tr>
-                      <td>sss</td>
-                      <td>ss</td>
-                      <td>ss</td>
-                      <td>sss</td>
-                      <td>sss</td>
-                    </tr>
-                    <tr>
-                      <td>sss</td>
-                      <td>ss</td>
-                      <td>ss</td>
-                      <td>sss</td>
-                      <td>sss</td>
-                    </tr>
-                    <tr>
-                      <td>sss</td>
-                      <td>ss</td>
-                      <td>ss</td>
-                      <td>sss</td>
-                      <td>sss</td>
-                    </tr>
-                  </tbody>
-                </table>
-              ) : null}
-              <li className="list-group-item">abc</li>
-              <li className="list-group-item">abc</li>
-              <li className="list-group-item">abc</li>
-              <li className="list-group-item">abc</li>
-            </ul>
-          </div>
+  componentDidMount() {
+    this.fetchTest();
+  }
+
+  fetchTest = () => {
+    axios
+      .get(`http://localhost:5000/user/read/${app.getUserId()}`)
+      .then((response) => {
+        this.setState({
+          testDetails: response.data.tests,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  viewHandler = () => {
+    console.log(this.state.testDetails);
+    if (!this.state.testDetails) {
+      return (
+        <div>
+          <h1>no test</h1>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <TestList
+          isExpand={this.state.isExpand}
+          expandHandler={this.expandHandler}
+          testDetails={this.state.testDetails}
+        >
+        </TestList>
+      );
+    }
+  };
+  render() {
+    return <React.Fragment>{this.viewHandler()}</React.Fragment>;
   }
 }
 
