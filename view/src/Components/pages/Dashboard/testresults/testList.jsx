@@ -29,10 +29,11 @@ const testList = (props) => {
                     </button>
                   )}
                   <span className="text-capitalize">{item.name}</span>
+                  {props.isExpand ? <TestTable id={item._id}></TestTable> : null}
                 </li>
               );
             })}
-            {props.isExpand ? <TestTable></TestTable> : null}
+            
           </ul>
         </div>
       </div>

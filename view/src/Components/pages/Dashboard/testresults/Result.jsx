@@ -12,8 +12,6 @@ class Result extends Component {
   };
 
   expandHandler = (event) => {
-    console.log(event.target.value);
-    
     this.setState({
       isExpand: !this.state.isExpand,
     });
