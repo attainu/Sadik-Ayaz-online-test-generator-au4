@@ -8,28 +8,31 @@ const testList = (props) => {
       <div className="row">
         <div className="col">
           <ul className="list-group">
-            {props.testDetails.map((item,index) => {
+            {props.testDetails.getTests().map((item,index) => {
+              console.log("props =",props.isExpand, " item =",item._id);
               return (
                 <li className="list-group-item" key={index} name={item._id}>
-                  {props.isExpand ? (
+                  {props.isExpand === item._id ? (
                     <button
                       className="btn text-danger mr-auto"
                       value={item._id}
-                      onClick={props.expandHandler}
+                      onClick={props.closeResult}
                     >
-                      <i class="fa fa-minus" aria-hidden="true"></i>
+                    close
+                      {/* <i className="fa fa-minus" id={item._id}  aria-hidden="true"></i> */}
                     </button>
                   ) : (
                     <button
                       className="btn text-success ml-auto"
                       value={item._id}
-                      onClick={props.expandHandler}
+                      onClick={props.openResult}
                     >
-                      <i class="fa fa-plus" aria-hidden="true"></i>
+                    open
+                      {/* <i className="fa fa-plus" id={item._id} aria-hidden="true"></i> */}
                     </button>
                   )}
                   <span className="text-capitalize">{item.name}</span>
-                  {props.isExpand ? <TestTable id={item._id}></TestTable> : null}
+                  {props.isExpand === item._id ? <TestTable key={item._id} id={item._id}></TestTable> : null}
                 </li>
               );
             })}

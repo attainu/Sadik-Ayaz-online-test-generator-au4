@@ -3,18 +3,13 @@ import "./Result.css";
 import app from "../../../../appsBasic";
 import axios from "axios";
 import TestList from "./testList";
+import Tests from "../../../model/collection/test";
 
 class Result extends Component {
   state = {
-    isExpand: false,
     testDetails: null,
-    testId:null
-  };
-
-  expandHandler = (event) => {
-    this.setState({
-      isExpand: !this.state.isExpand,
-    });
+    testId:null,
+    openTest: null,
   };
 
   componentDidMount() {
@@ -26,16 +21,27 @@ class Result extends Component {
       .get(`http://localhost:5000/user/read/${app.getUserId()}`)
       .then((response) => {
         this.setState({
-          testDetails: response.data.tests,
+          testDetails: new Tests(response.data.tests),
         });
       })
       .catch((error) => {
         console.log(error);
       });
   };
+  openResult = (e) => {
+    const testId = e.target.value;
+    this.setState({
+      openTest : testId
+    });
+   }
+   closeResult = (e) => {
+    this.setState({
+      openTest : null
+    });
+   }
+
 
   viewHandler = () => {
-    console.log(this.state.testDetails);
     if (!this.state.testDetails) {
       return (
         <div>
@@ -45,9 +51,11 @@ class Result extends Component {
     } else {
       return (
         <TestList
-          isExpand={this.state.isExpand}
-          expandHandler={this.expandHandler}
+          isExpand={this.state.openTest}
           testDetails={this.state.testDetails}
+          openResult={this.openResult}
+          closeResult={this.closeResult}
+          {...this.state}
         >
         </TestList>
       );

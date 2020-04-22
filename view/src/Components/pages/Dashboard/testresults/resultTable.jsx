@@ -38,7 +38,7 @@ class resultTable extends Component {
         <tbody className="text-center text-capitalize">
           {this.state.testResult.map((item, index) => {
             return (
-              <tr>
+              <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{item.studentName}</td>
                 <td>
