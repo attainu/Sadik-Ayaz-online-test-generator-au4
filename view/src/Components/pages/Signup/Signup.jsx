@@ -61,6 +61,7 @@ class SignUp extends Component {
                     onChange={(event) => {
                       this.setState({ firstname: event.target.value });
                     }}
+                    required
                   ></input>
                 </div>
               </div>
@@ -74,10 +75,10 @@ class SignUp extends Component {
                     onChange={(event) => {
                       this.setState({ lastname: event.target.value });
                     }}
+                    required
                   ></input>
                 </div>
               </div>
-            </div>
             <div className="form-group">
               <label>Email Address</label>
               <input
@@ -87,6 +88,7 @@ class SignUp extends Component {
                 onChange={(event) => {
                   this.setState({ email: event.target.value });
                 }}
+                required
               ></input>
             </div>
             <div className="form-group">
@@ -98,6 +100,7 @@ class SignUp extends Component {
                 onChange={(event) => {
                   this.setState({ password: event.target.value });
                 }}
+                required
               ></input>
             </div>
             <input
