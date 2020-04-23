@@ -32,9 +32,8 @@ class AddTest extends Component {
     await axios
       .get(`http://localhost:5000/test/read/${app.getTestId()}`)
       .then((response) => {  
-        console.log(response.data);
         this.setState({
-          questionPaper: [...response.data.questions],
+          questionPaper: response.data.questions,
           totalMarks:response.data.totalmarks
         });
       })

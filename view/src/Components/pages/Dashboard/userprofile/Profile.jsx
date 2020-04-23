@@ -5,9 +5,16 @@ import "./Profile.css";
 class Profile extends Component {
   state = {
     disabled: true,
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
   };
 
   componentDidMount() {
+    this.fetchProfile();
+  }
+  fetchProfile = () => {
     axios
       .get(`http://localhost:5000/user/read/${app.getUserId()}`)
       .then((response) => {
@@ -20,7 +27,7 @@ class Profile extends Component {
         });
       })
       .catch((error) => console.log(error));
-  }
+  };
 
   editHandler = (event) => {
     event.preventDefault();
@@ -40,9 +47,18 @@ class Profile extends Component {
     axios
       .put(`http://localhost:5000/user/update/${app.getUserId()}`, { user })
       .then((response) => {
-        window.location.reload();
+        if(response.status===200)
+        {
+          window.location.reload();
+        }
       })
       .catch((error) => console.log(error));
+  };
+
+  inputHandler = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
   };
 
   render() {
@@ -55,10 +71,9 @@ class Profile extends Component {
             <input
               type="text"
               value={this.state.firstname}
+              onChange={this.inputHandler}
+              name="firstname"
               className="form-control"
-              onChange={(event) =>
-                this.setState({ firstname: event.target.value })
-              }
               disabled={this.state.disabled ? "disabled" : ""}
             ></input>
           </div>
@@ -66,11 +81,10 @@ class Profile extends Component {
             <label>Last Name</label>
             <input
               type="text"
+              name="lastname"
               value={this.state.lastname}
               className="form-control"
-              onChange={(event) =>
-                this.setState({ lastname: event.target.value })
-              }
+              onChange={this.inputHandler}
               disabled={this.state.disabled ? "disabled" : ""}
             ></input>
           </div>
@@ -78,9 +92,10 @@ class Profile extends Component {
             <label>Email</label>
             <input
               type="text"
+              name="email"
               value={this.state.email}
               className="form-control"
-              onChange={(event) => this.setState({ email: event.target.value })}
+              onChange={this.inputHandler}
               disabled={this.state.disabled ? "disabled" : ""}
             ></input>
           </div>
@@ -88,22 +103,26 @@ class Profile extends Component {
             <label>Password</label>
             <input
               type="text"
+              name="password"
               value={this.state.password}
               className="form-control"
-              onChange={(event) =>
-                this.setState({ password: event.target.value })
-              }
+              onChange={this.inputHandler}
               disabled={this.state.disabled ? "disabled" : ""}
             ></input>
           </div>
           <div>
-            <button className="btn btn-primary" onClick={this.editHandler}>
+            <button 
+            className="btn btn-primary" 
+            onClick={this.editHandler}
+            disabled={!this.state.disabled ? "disabled" : ""}
+            >
               Edit
             </button>
             <input
               type="submit"
               className="btn btn-primary ml-3"
               value="Save"
+              disabled={this.state.disabled?"disabled":""}
             />
           </div>
         </form>

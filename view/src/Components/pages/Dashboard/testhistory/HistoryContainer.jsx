@@ -18,7 +18,6 @@ class HistoryContainer extends Component {
     Axios.get(`http://localhost:5000/user/read/${app.getUserId()}`)
       .then((response) => {
         const result = new Tests(response.data.tests.reverse());
-        //console.log(result.getTests());
         this.setState({
           testHistory: result.getTests(),
           result: result,
@@ -28,8 +27,6 @@ class HistoryContainer extends Component {
   };
 
   editHandler = (testName, testId) => {
-
-    console.log(`${testId} ${testName}`);
     app.setTestId(testId);
     app.setTestName(testName);
   };
@@ -54,7 +51,6 @@ class HistoryContainer extends Component {
 
     Axios.put(`http://localhost:5000/test/update/${testId}`, test)
       .then((response) => {
-        console.log(response);
         const testHistory = this.state.result.updateTestStatusOf(index);
         this.setState({ testHistory });
       })
@@ -65,18 +61,16 @@ class HistoryContainer extends Component {
   publishTest = (testId, index) => {
     const test = {
       _id: testId,
-      publish: true
+      publish: true,
     };
     Axios.put(`http://localhost:5000/test/update/${testId}`, test)
       .then((response) => {
-        console.log(response);
         const testHistory = this.state.result.updateTestStatusOf(index);
         this.setState({ testHistory });
 
         app.removeTestName();
         app.removeTestId();
         app.removeIsDisplay();
-        
       })
       .catch((error) => console.log(error));
     return null;

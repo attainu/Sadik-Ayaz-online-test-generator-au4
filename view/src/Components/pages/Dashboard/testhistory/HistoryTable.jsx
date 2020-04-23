@@ -1,10 +1,12 @@
 import React from "react";
 import {Link} from 'react-router-dom';
+import swal from 'sweetalert';
+
 const HistoryTable = (props) => {
   return (
     <React.Fragment>
       <h1 className="profile-heading">Previous Tests</h1>
-      <table className="table table-hover">
+      <table className="table table-hover mt-2">
         <thead className="text-center">
           <tr>
             <th scope="col">SR.</th>
@@ -35,7 +37,7 @@ const HistoryTable = (props) => {
                 </td>
                 {item.publish ? (
                   <td>
-                    <a href={item.url} className="badge badge-primary" target="_blank">
+                    <a href={item.url} className="badge badge-primary" target="_blank"  rel="noopener noreferrer">
                       {item.url}
                     </a>
                   </td>
@@ -50,7 +52,7 @@ const HistoryTable = (props) => {
                     disabled={item.publish ? false : true}
                     onClick={() => {
                       navigator.clipboard.writeText(item.url);
-                      alert("copied");
+                      swal("copied","success","success");
                     }}
                   >
                     copy
