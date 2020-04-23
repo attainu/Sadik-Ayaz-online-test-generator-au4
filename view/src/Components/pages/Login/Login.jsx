@@ -37,7 +37,7 @@ class Login extends Component {
             loggedin: app.getToken(),
           });
         } else {
-          swal("Error", `${response.data.message}`, "error");
+          swal("Error", `${response.data.message}`,"error");
         }
       });
   };
@@ -52,7 +52,7 @@ class Login extends Component {
         <div className="signin-inner  w3-animate-opacity">
           <h3 className="heading-color">Sign-In</h3>
           <hr></hr>
-          <form onSubmit={this.loginHandler, this.onubmit} className="subscribe-form">
+          <form onSubmit={this.loginHandler} className="subscribe-form">
             <div className="form-group">
               <label>Email</label>
               <input
