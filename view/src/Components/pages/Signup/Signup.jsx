@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./Signup.css";
-import Navbar from '../../basic/Navbar';
+import Navbar from "../../basic/Navbar";
 import axios from "axios";
 import { Redirect, Link } from "react-router-dom";
-
+import swal from 'sweetalert';
 class SignUp extends Component {
   state = {
     firstname: null,
@@ -27,12 +27,13 @@ class SignUp extends Component {
 
     await axios.post(`http://localhost:5000/signup`, { user }).then((res) => {
       if (res.data.status) {
-        alert(res.data.message);
+        swal('Congratulations!!',`${res.data.message}`,'success');
         this.setState({
           success: res.data.status,
         });
       } else {
-        alert(res.data.message);
+        swal('Error!!',`${res.data.message}`,'error');
+        //alert(res.data.message);
       }
     });
   };
@@ -44,35 +45,40 @@ class SignUp extends Component {
 
     return (
       <div className="signup-wrapper">
-        <Navbar/>
+        <Navbar />
         <div className="signup-inner w3-animate-opacity">
-          <h3 className="pb-0 pt-0">Sign-Up</h3>
+          <h3 className="heading-color">Sign-Up</h3>
           <hr></hr>
           <form onSubmit={this.signupHandler} className="subscribe-form">
-            <div className="form-group">
-              <label>First Name</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter first name"
-                onChange={(event) => {
-                  this.setState({ firstname: event.target.value });
-                }}
-                required
-              ></input>
-            </div>
-            <div className="form-group">
-              <label>Last Name</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter lastname"
-                onChange={(event) => {
-                  this.setState({ lastname: event.target.value });
-                }}
-                required
-              ></input>
-            </div>
+            <div className="row">
+              <div className="col">
+                <div className="form-group">
+                  <label>First Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter here"
+                    onChange={(event) => {
+                      this.setState({ firstname: event.target.value });
+                    }}
+                    required
+                  ></input>
+                </div>
+              </div>
+              <div className="col">
+                <div className="form-group">
+                  <label>Last Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter here"
+                    onChange={(event) => {
+                      this.setState({ lastname: event.target.value });
+                    }}
+                    required
+                  ></input>
+                </div>
+              </div>
             <div className="form-group">
               <label>Email Address</label>
               <input
@@ -99,7 +105,7 @@ class SignUp extends Component {
             </div>
             <input
               type="submit"
-              className="btn btn-dark btn-block"
+              className="btn btn-primary btn-block"
               value="Sign-Up"
             />
           </form>

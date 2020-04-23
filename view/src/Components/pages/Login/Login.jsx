@@ -4,6 +4,7 @@ import axios from "axios";
 import app from "../../../appsBasic";
 import "./Login.css";
 import Navbar from "../../basic/Navbar";
+import swal from "sweetalert";
 
 class Login extends Component {
   state = {
@@ -36,7 +37,7 @@ class Login extends Component {
             loggedin: app.getToken(),
           });
         } else {
-          alert(response.data.message);
+          swal("Error", `${response.data.message}`, "error");
         }
       });
   };
@@ -46,11 +47,10 @@ class Login extends Component {
       return <Redirect to="/dashboard"></Redirect>;
     }
     return (
-      
       <div className="signin-wrapper">
-        <Navbar/>
+        <Navbar />
         <div className="signin-inner  w3-animate-opacity">
-          <h3>Sign-In</h3>
+          <h3 className="heading-color">Sign-In</h3>
           <hr></hr>
           <form onSubmit={this.loginHandler, this.onubmit} className="subscribe-form">
             <div className="form-group">
@@ -73,7 +73,7 @@ class Login extends Component {
                 type="password"
                 className="form-control"
                 placeholder="enter password"
-                autocomplete="current-password"
+                autoComplete="current-password"
                 onChange={(event) => {
                   this.setState({ password: event.target.value });
                 }}
@@ -82,7 +82,7 @@ class Login extends Component {
             </div>
             <input
               type="submit"
-              className="btn btn-dark btn-block"
+              className="btn btn-primary btn-block"
               value="Sign-In"
             />
             <p className="forgot-password text-right">Forgot password?</p>

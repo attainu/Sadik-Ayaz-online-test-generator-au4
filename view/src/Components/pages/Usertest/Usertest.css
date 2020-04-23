@@ -14,7 +14,7 @@
 }
 
 .question-header {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem;
 }
 
 .question-choices-list {
@@ -51,4 +51,8 @@
 
 .question-choice-letter {
     border: .3rem solid #e0e0e0;
+}
+
+.question-choice:hover{
+    background-color: #eee;
 }

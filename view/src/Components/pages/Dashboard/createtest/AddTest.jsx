@@ -5,6 +5,8 @@ import Showtest from "./Showtest";
 import PublishTest from "./PublishTest";
 import axios from "axios";
 import app from "../../../../appsBasic";
+import swal from "sweetalert";
+
 class AddTest extends Component {
   state = {
     userId: app.getUserId(),
@@ -19,6 +21,7 @@ class AddTest extends Component {
     answer: null,
     marks: null,
     questionPaper: null,
+    totalMarks: null,
   };
 
   componentDidMount() {
@@ -28,9 +31,10 @@ class AddTest extends Component {
   fetchTest = async () => {
     await axios
       .get(`http://localhost:5000/test/read/${app.getTestId()}`)
-      .then((response) => {
+      .then((response) => {  
         this.setState({
-          questionPaper: [...response.data.questions],
+          questionPaper: response.data.questions,
+          totalMarks:response.data.totalmarks
         });
       })
       .catch((error) => console.log(error));
@@ -38,25 +42,32 @@ class AddTest extends Component {
 
   addTestHandler = async (event) => {
     event.preventDefault();
-
     const testDetails = {
       id: this.state.userId,
       name: this.state.testName,
       publish: this.state.isPublished,
     };
-
-    await axios
-      .post("http://localhost:5000/test/create", testDetails)
-      .then((response) => {
-        app.setTestId(response.data.test._doc._id);
-        app.setTestName(response.data.test._doc.name);
-        this.setState({
-          testId: response.data.test._doc._id,
-          testName: response.data.test._doc.name,
-        });
-        alert("success test added");
-      })
-      .catch((error) => console.log(error));
+    if (!this.state.testName) {
+      swal("Test Name is Required", "Something Went wrong!!", "error");
+    } else {
+      await axios
+        .post("http://localhost:5000/test/create", testDetails)
+        .then((response) => {
+          if (response.status === 200) {
+            swal("Test Created!", "Please Add Questions", "success").then(
+              () => {
+                app.setTestId(response.data.test._doc._id);
+                app.setTestName(response.data.test._doc.name);
+                this.setState({
+                  testId: response.data.test._doc._id,
+                  testName: response.data.test._doc.name,
+                });
+              }
+            );
+          }
+        })
+        .catch((error) => console.log(error));
+    }
   };
 
   addQuestionHandler = async (event) => {
@@ -78,8 +89,9 @@ class AddTest extends Component {
       .post("http://localhost:5000/question/create", question)
       .then((response) => {
         if (response.status === 200) {
-          alert("queston added succesfullly");
-          this.fetchTest();
+          swal("Success!!", "Question Added", "success").then(() => {
+            this.fetchTest();
+          });
         }
       })
       .catch((error) => console.log(error));
@@ -111,14 +123,20 @@ class AddTest extends Component {
   };
 
   saveHandler = () => {
-    app.removeTestName();
-    app.removeTestId();
-    this.setState({
-      testName: null,
-      testId: null,
-      questionPaper: null
+    swal({
+      title: "TEST SAVED!",
+      icon: "success",
+      button: "OK",
+      timer: 2000,
+    }).then(() => {
+      app.removeTestName();
+      app.removeTestId();
+      this.setState({
+        testName: null,
+        testId: null,
+        questionPaper: null,
+      });
     });
-    alert("test saved successfully");
     //window.location.reload();
   };
 
@@ -132,16 +150,23 @@ class AddTest extends Component {
     await axios
       .put(`http://localhost:5000/test/update/${app.getTestId()}`, test)
       .then((response) => {
-        app.setTestUrl(`${window.location.origin}/test/${app.getTestId()}`);
-        this.setState({
-          isPublished: response.data.publish,
-        });
-        app.removeTestName();
-        app.removeTestId();
+        if (response.status === 200) {
+          swal({
+            title: "Save & Publish!",
+            icon: "success",
+            button: "OK",
+            timer: 2000,
+          }).then(() => {
+            app.setTestUrl(`${window.location.origin}/test/${app.getTestId()}`);
+            this.setState({
+              isPublished: response.data.publish,
+            });
+            app.removeTestName();
+            app.removeTestId();
+          });
+        }
       })
       .catch((error) => console.log(error));
-
-    alert("successfully save & publish");
   };
 
   viewHandler = () => {
@@ -173,6 +198,7 @@ class AddTest extends Component {
             <Showtest
               testName={this.state.testName}
               testQuestion={this.state.questionPaper}
+              totalMarks={this.state.totalMarks}
               editQuestion={this.questionEditHandler}
               deleteQuestion={this.questionDeleteHandler}
               save={this.saveHandler}

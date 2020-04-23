@@ -1,27 +1,17 @@
 import React from "react";
 import {Link} from 'react-router-dom';
+import swal from 'sweetalert';
+
 const HistoryTable = (props) => {
   return (
     <React.Fragment>
       <h1 className="profile-heading">Previous Tests</h1>
-      <table className="table table-hover">
+      <table className="table table-hover mt-2">
         <thead className="text-center">
-          {/* <tr className="text-capitalize">
-            <th scope="col" className="p-0 pt-2 pb-2"><span className="badge badge-dark">SR.</span></th>
-            <th scope="col" className="p-0 pt-2 pb-2"><span className="badge badge-dark">NAME</span></th>
-            <th scope="col" className="p-0 pt-2 pb-2"><span className="badge badge-dark">DATE & TIME</span></th>
-            <th scope="col" className="p-0 pt-2 pb-2"><span className="badge badge-dark">URL</span></th>
-            <th scope="col" className="p-0 pt-2 pb-2"><span className="badge badge-dark">COPY</span></th>
-            <th scope="col" className="p-0 pt-2 pb-2"><span className="badge badge-dark">STATUS</span></th>
-            <th scope="col" className="p-0 pt-2 pb-2"><span className="badge badge-dark">CHANGE</span></th>
-            <th scope="col" className="p-0 pt-2 pb-2"><span className="badge badge-dark">EDIT</span></th>
-            <th scope="col" className="p-0 pt-2 pb-2"><span className="badge badge-dark">DELETE</span></th>
-          </tr> */}
           <tr>
             <th scope="col">SR.</th>
             <th scope="col">NAME</th>
             <th scope="col">DATE & TIME</th> 
-            {/* <i class="fa fa-sort" aria-hidden="true"></i> */}
             <th scope="col">URL</th>
             <th scope="col">COPY</th>
             <th scope="col">STATUS</th>
@@ -47,7 +37,7 @@ const HistoryTable = (props) => {
                 </td>
                 {item.publish ? (
                   <td>
-                    <a href={item.url} className="badge badge-primary">
+                    <a href={item.url} className="badge badge-primary" target="_blank"  rel="noopener noreferrer">
                       {item.url}
                     </a>
                   </td>
@@ -62,7 +52,7 @@ const HistoryTable = (props) => {
                     disabled={item.publish ? false : true}
                     onClick={() => {
                       navigator.clipboard.writeText(item.url);
-                      alert("copied");
+                      swal("copied","success","success");
                     }}
                   >
                     copy

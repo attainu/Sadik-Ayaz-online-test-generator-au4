@@ -1,93 +1,68 @@
 import React, { Component } from "react";
 import "./Result.css";
+import app from "../../../../appsBasic";
+import axios from "axios";
+import TestList from "./testList";
+import Tests from "../../../model/collection/test";
+
 class Result extends Component {
   state = {
-    isExpand: false,
+    testDetails: null,
+    testId:null,
+    openTest: null,
   };
 
-  expandHandler = () => {
+  componentDidMount() {
+    this.fetchTest();
+  }
+
+  fetchTest = () => {
+    axios
+      .get(`http://localhost:5000/user/read/${app.getUserId()}`)
+      .then((response) => {
+        this.setState({
+          testDetails: new Tests(response.data.tests),
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  openResult = (e) => {
+    const testId = e.target.value;
     this.setState({
-      isExpand: !this.state.isExpand,
+      openTest : testId
     });
-  };
+   }
+   closeResult = (e) => {
+    this.setState({
+      openTest : null
+    });
+   }
 
-  render() {
-    return (
-      <div>
-        <h1 className="result-heading">Results</h1>
-        <div className="row">
-          <div className="col">
-            <ul className="list-group">
-              <li className="list-group-item">
-                {this.state.isExpand ? (
-                  <button
-                    className="btn text-danger mr-auto"
-                    onClick={this.expandHandler}
-                  >
-                    <i class="fa fa-minus" aria-hidden="true"></i>
-                  </button>
-                ) : (
-                  <button
-                    className="btn text-success ml-auto"
-                    onClick={this.expandHandler}
-                  >
-                    <i class="fa fa-plus" aria-hidden="true"></i>
-                  </button>
-                )}
-                <span>Test Name</span>
-              </li>
-              {this.state.isExpand ? (
-                <table className="table table-striped .table-hover">
-                  <thead>
-                    <tr>
-                      <th>sr</th>
-                      <th>name</th>
-                      <th>score</th>
-                      <th>%</th>
-                      <th>pass</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>sss</td>
-                      <td>ss</td>
-                      <td>ss</td>
-                      <td>sss</td>
-                      <td>sss</td>
-                    </tr>
-                    <tr>
-                      <td>sss</td>
-                      <td>ss</td>
-                      <td>ss</td>
-                      <td>sss</td>
-                      <td>sss</td>
-                    </tr>
-                    <tr>
-                      <td>sss</td>
-                      <td>ss</td>
-                      <td>ss</td>
-                      <td>sss</td>
-                      <td>sss</td>
-                    </tr>
-                    <tr>
-                      <td>sss</td>
-                      <td>ss</td>
-                      <td>ss</td>
-                      <td>sss</td>
-                      <td>sss</td>
-                    </tr>
-                  </tbody>
-                </table>
-              ) : null}
-              <li className="list-group-item">abc</li>
-              <li className="list-group-item">abc</li>
-              <li className="list-group-item">abc</li>
-              <li className="list-group-item">abc</li>
-            </ul>
-          </div>
+
+  viewHandler = () => {
+    if (!this.state.testDetails) {
+      return (
+        <div>
+          <h1>no test</h1>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <TestList
+          isExpand={this.state.openTest}
+          testDetails={this.state.testDetails}
+          openResult={this.openResult}
+          closeResult={this.closeResult}
+          {...this.state}
+        >
+        </TestList>
+      );
+    }
+  };
+  render() {
+    return <React.Fragment>{this.viewHandler()}</React.Fragment>;
   }
 }
 

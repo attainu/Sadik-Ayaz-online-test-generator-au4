@@ -9,7 +9,7 @@ const Showtest = (props) => {
             <h5>title - {props.testName}</h5>
           </div>
           <div className="col  text-capitalize text-dark text-right">
-            <h5> total marks : 20</h5>
+            <h5> total - {props.totalMarks} points</h5>
           </div>
         </div>
         <hr></hr>
@@ -28,7 +28,9 @@ const Showtest = (props) => {
                     <div className="col-md-1 ml-auto">
                       <button
                         className="btn btn-outline-success"
-                        onClick={()=>{props.editQuestion(item._id)}}
+                        onClick={() => {
+                          props.editQuestion(item._id);
+                        }}
                       >
                         <i className="far fa-edit"></i>
                       </button>
@@ -36,7 +38,9 @@ const Showtest = (props) => {
                     <div className="col-md-1 ml-auto">
                       <button
                         className="btn btn-outline-danger"
-                        onClick={()=>{props.deleteQuestion(item._id)}}
+                        onClick={() => {
+                          props.deleteQuestion(item._id);
+                        }}
                       >
                         <i className="fas fa-trash"></i>
                       </button>
@@ -81,10 +85,7 @@ const Showtest = (props) => {
         </div>
         <div className="row">
           <div className="col-3 mx-auto mb-3">
-            <button
-              className="btn btn-block btn-primary"
-              onClick={props.save}
-            >
+            <button className="btn btn-block btn-primary" onClick={props.save}>
               Save
             </button>
           </div>

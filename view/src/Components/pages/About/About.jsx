@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Navbar from "../../basic/Navbar";
 import Footer from "../../basic/Footer";
-import {Link} from 'react-router-dom';
-import './About.css';
+import { Link } from "react-router-dom";
+import "./About.css";
 
 class About extends Component {
   render() {
@@ -35,13 +35,13 @@ class About extends Component {
           </div>
           <div className="row">
             <div className="col-md-4">
-              <div class="card card-height">
-                <div class="card-body">
-                  <h5 class="card-title text-center">
+              <div className="card card-height">
+                <div className="card-body">
+                  <h5 className="card-title text-center">
                     Perfectly formatted tests
                   </h5>
                   <hr></hr>
-                  <p class="card-text">
+                  <p className="card-text">
                     Create multiple choice, fill-in-the-blank, matching, short
                     answer and true or false questions. Add instructions and
                     divide your test into multiple sections.{" "}
@@ -50,11 +50,11 @@ class About extends Component {
               </div>
             </div>
             <div className="col-md-4">
-              <div class="card card-height">
-                <div class="card-body">
-                  <h5 class="card-title text-center">Question Pools</h5>
+              <div className="card card-height">
+                <div className="card-body">
+                  <h5 className="card-title text-center">Question Pools</h5>
                   <hr></hr>
-                  <p class="card-text">
+                  <p className="card-text">
                     Create a test with your entire question bank. Publish your
                     test and choose to present as few or as many questions as
                     you require. Each test taker will have a random set of
@@ -64,13 +64,13 @@ class About extends Component {
               </div>
             </div>
             <div className="col-md-4">
-              <div class="card card-height">
-                <div class="card-body">
-                  <h5 class="card-title text-center text-capitalize">
+              <div className="card card-height">
+                <div className="card-body">
+                  <h5 className="card-title text-center text-capitalize">
                     Build exams with ease
                   </h5>
                   <hr></hr>
-                  <p class="card-text">
+                  <p className="card-text">
                     Create an exam from your existing tests with just a few
                     clicks. At any time you can copy a question from one test to
                     another one!
@@ -81,13 +81,13 @@ class About extends Component {
           </div>
           <div className="row mt-3">
             <div className="col-md-4">
-              <div class="card card-height">
-                <div class="card-body">
-                  <h5 class="card-title text-center">
+              <div className="card card-height">
+                <div className="card-body">
+                  <h5 className="card-title text-center">
                     Online tests graded automatically
                   </h5>
                   <hr></hr>
-                  <p class="card-text">
+                  <p className="card-text">
                     Published online tests are graded automatically. View and
                     print student's results and override grading when necessary.
                     The same test you print, is the same test you publish
@@ -97,13 +97,13 @@ class About extends Component {
               </div>
             </div>
             <div className="col-md-4">
-              <div class="card card-height">
-                <div class="card-body">
-                  <h5 class="card-title text-center">
+              <div className="card card-height">
+                <div className="card-body">
+                  <h5 className="card-title text-center">
                     Question analysis reporting
                   </h5>
                   <hr></hr>
-                  <p class="card-text">
+                  <p className="card-text">
                     Quick and easy reports to see how many test takers answered
                     which questions right and wrong.
                   </p>
@@ -111,13 +111,13 @@ class About extends Component {
               </div>
             </div>
             <div className="col-md-4">
-              <div class="card card-height">
-                <div class="card-body">
-                  <h5 class="card-title text-center text-capitalize">
+              <div className="card card-height">
+                <div className="card-body">
+                  <h5 className="card-title text-center text-capitalize">
                     Export to Word or PDF
                   </h5>
                   <hr></hr>
-                  <p class="card-text">
+                  <p className="card-text">
                     Any test, any version, including answer sheets can be
                     download as a Micrsoft Word or PDF document to be saved and
                     printed later.

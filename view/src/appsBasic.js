@@ -38,8 +38,8 @@ var app = {
     getTestName: function () {
         return localStorage.getItem("testname");
     },
-    setTestName: function (testid) {
-        return localStorage.setItem("testname", testid);
+    setTestName: function (testname) {
+        return localStorage.setItem("testname", testname);
     },
     removeTestName: function () {
         return localStorage.removeItem("testname");
@@ -47,11 +47,38 @@ var app = {
     getTestUrl: function () {
         return localStorage.getItem("testurl");
     },
-    setTestUrl: function (testid) {
-        return localStorage.setItem("testurl", testid);
+    setTestUrl: function (testurl) {
+        return localStorage.setItem("testurl", testurl);
     },
     removeTestUrl: function () {
         return localStorage.removeItem("testurl");
+    },
+    getIsDisplay: function () {
+        return localStorage.getItem("isdisplay");
+    },
+    setIsDisplay: function (isdisplay) {
+        return localStorage.setItem("isdisplay", isdisplay);
+    },
+    removeIsDisplay: function () {
+        return localStorage.removeItem("isdisplay");
+    },
+    getStudentname: function () {
+        return localStorage.getItem("studentname");
+    },
+    setStudentname: function (studentname) {
+        return localStorage.setItem("studentname",studentname);
+    },
+    removeStudentname: function () {
+        return localStorage.removeItem("studentname");
+    },
+    getStudentId: function () {
+        return localStorage.getItem("studentid");
+    },
+    setStudentId: function (studentid) {
+        return localStorage.setItem("studentid",studentid);
+    },
+    removeStudentId: function () {
+        return localStorage.removeItem("studentid");
     }
 
 };
