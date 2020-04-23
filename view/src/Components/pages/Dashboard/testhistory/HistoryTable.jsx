@@ -35,7 +35,7 @@ const HistoryTable = (props) => {
                 </td>
                 {item.publish ? (
                   <td>
-                    <a href={item.url} className="badge badge-primary">
+                    <a href={item.url} className="badge badge-primary" target="_blank">
                       {item.url}
                     </a>
                   </td>
