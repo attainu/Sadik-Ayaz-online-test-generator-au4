@@ -49,6 +49,7 @@ class SignUp extends Component {
         <div className="signup-inner w3-animate-opacity">
           <h3 className="heading-color">Sign-Up</h3>
           <hr></hr>
+          <div>
           <form onSubmit={this.signupHandler} className="subscribe-form">
             <div className="row">
               <div className="col">
@@ -79,6 +80,7 @@ class SignUp extends Component {
                   ></input>
                 </div>
               </div>
+           </div>
             <div className="form-group">
               <label>Email Address</label>
               <input
@@ -114,6 +116,7 @@ class SignUp extends Component {
             Already have an account?<Link to="/sign-in">Sign-in here</Link>
           </p>
         </div>
+      </div>
       </div>
     );
   }
