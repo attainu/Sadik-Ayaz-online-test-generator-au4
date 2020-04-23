@@ -18,7 +18,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Password is required']
     },
+    tests: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'tests'
+    }]
 }, { collection: 'users' });
 
 
-module.exports = User = mongoose.model('user', userSchema);
+module.exports = User = mongoose.model('users', userSchema);
