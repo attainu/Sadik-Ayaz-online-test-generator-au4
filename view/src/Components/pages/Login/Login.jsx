@@ -24,7 +24,7 @@ class Login extends Component {
     };
 
     await axios
-      .post("http://localhost:5000/login", { user })
+      .post("/login", { user })
       .then((response) => {
         if (response.data.status === 200) {
           app.setToken(response.data.token);

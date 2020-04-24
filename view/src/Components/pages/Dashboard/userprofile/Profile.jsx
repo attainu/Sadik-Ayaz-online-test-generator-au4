@@ -16,7 +16,7 @@ class Profile extends Component {
   }
   fetchProfile = () => {
     axios
-      .get(`http://localhost:5000/user/read/${app.getUserId()}`)
+      .get(`/user/read/${app.getUserId()}`)
       .then((response) => {
         let { firstname, lastname, email, password } = response.data;
         this.setState({
@@ -45,7 +45,7 @@ class Profile extends Component {
       password: this.state.password,
     };
     axios
-      .put(`http://localhost:5000/user/update/${app.getUserId()}`, { user })
+      .put(`/user/update/${app.getUserId()}`, { user })
       .then((response) => {
         if(response.status===200)
         {

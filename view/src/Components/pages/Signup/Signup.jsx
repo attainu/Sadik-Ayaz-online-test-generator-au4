@@ -25,7 +25,7 @@ class SignUp extends Component {
       password,
     };
 
-    await axios.post(`http://localhost:5000/signup`, { user }).then((res) => {
+    await axios.post(`/signup`, { user }).then((res) => {
       if (res.data.status) {
         swal('Congratulations!!',`${res.data.message}`,'success');
         this.setState({

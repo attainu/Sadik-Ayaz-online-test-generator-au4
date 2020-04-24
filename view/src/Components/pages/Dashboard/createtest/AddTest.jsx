@@ -30,7 +30,7 @@ class AddTest extends Component {
 
   fetchTest = async () => {
     await axios
-      .get(`http://localhost:5000/test/read/${app.getTestId()}`)
+      .get(`/test/read/${app.getTestId()}`)
       .then((response) => {  
         this.setState({
           questionPaper: response.data.questions,
@@ -51,7 +51,7 @@ class AddTest extends Component {
       swal("Test Name is Required", "Something Went wrong!!", "error");
     } else {
       await axios
-        .post("http://localhost:5000/test/create", testDetails)
+        .post("/test/create", testDetails)
         .then((response) => {
           if (response.status === 200) {
             swal("Test Created!", "Please Add Questions", "success").then(
@@ -86,7 +86,7 @@ class AddTest extends Component {
     };
 
     await axios
-      .post("http://localhost:5000/question/create", question)
+      .post("/question/create", question)
       .then((response) => {
         if (response.status === 200) {
           swal("Success!!", "Question Added", "success").then(() => {
@@ -113,7 +113,7 @@ class AddTest extends Component {
 
   questionDeleteHandler = async (questionId) => {
     await axios
-      .delete(`http://localhost:5000/question/delete/${questionId}`)
+      .delete(`/question/delete/${questionId}`)
       .then((response) => {
         if (response.status === 200) {
           this.fetchTest();
@@ -148,7 +148,7 @@ class AddTest extends Component {
     };
 
     await axios
-      .put(`http://localhost:5000/test/update/${app.getTestId()}`, test)
+      .put(`/test/update/${app.getTestId()}`, test)
       .then((response) => {
         if (response.status === 200) {
           swal({

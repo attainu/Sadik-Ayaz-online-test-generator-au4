@@ -15,7 +15,7 @@ class HistoryContainer extends Component {
   }
 
   fetchTest = () => {
-    Axios.get(`http://localhost:5000/user/read/${app.getUserId()}`)
+    Axios.get(`/user/read/${app.getUserId()}`)
       .then((response) => {
         const result = new Tests(response.data.tests.reverse());
         this.setState({
@@ -32,7 +32,7 @@ class HistoryContainer extends Component {
   };
 
   deleteHandler = async (testName, testId) => {
-    await Axios.delete(`http://localhost:5000/test/delete/${testId}`)
+    await Axios.delete(`/test/delete/${testId}`)
       .then((response) => {
         if (response.status === 200) {
           app.removeTestId();
@@ -49,7 +49,7 @@ class HistoryContainer extends Component {
       publish: false,
     };
 
-    Axios.put(`http://localhost:5000/test/update/${testId}`, test)
+    Axios.put(`/test/update/${testId}`, test)
       .then((response) => {
         const testHistory = this.state.result.updateTestStatusOf(index);
         this.setState({ testHistory });
@@ -63,7 +63,7 @@ class HistoryContainer extends Component {
       _id: testId,
       publish: true,
     };
-    Axios.put(`http://localhost:5000/test/update/${testId}`, test)
+    Axios.put(`/test/update/${testId}`, test)
       .then((response) => {
         const testHistory = this.state.result.updateTestStatusOf(index);
         this.setState({ testHistory });

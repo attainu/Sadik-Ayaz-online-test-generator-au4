@@ -27,7 +27,7 @@ class UserContainer extends Component {
 
   fetchTest = () => {
     axios
-      .get(`http://localhost:5000/test/read/${this.state.testId}`)
+      .get(`/test/read/${this.state.testId}`)
       .then((response) => {
         const questions = [...response.data.questions];
         if (response.status === 200) {
@@ -62,7 +62,7 @@ class UserContainer extends Component {
       swal("studentName is Required", "something went wrong", "error");
     } else {
       axios
-        .post(`http://localhost:5000/student/create`, {
+        .post(`/student/create`, {
           name: this.state.studentName,
           success: true,
         })
@@ -104,7 +104,7 @@ class UserContainer extends Component {
     };
 
     await axios
-      .post(`http://localhost:5000/result/create`, result)
+      .post(`/result/create`, result)
       .then((response) => {
         if (response.status === 200) {
           swal("Test Submited!!", "redirected...", "success").then(() => {
