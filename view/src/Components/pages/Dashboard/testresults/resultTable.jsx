@@ -24,48 +24,48 @@ class resultTable extends Component {
 
   render() {
     return (
-        <table className="table table-striped table-hover" id="result">
-          <thead className="text-center text-capitalize">
-            <tr>
-              <th>sr</th>
-              <th className="text-left">student name</th>
-              <th>Correct Question</th>
-              <th>total Question</th>
-              <th>obtain score</th>
-              <th>total score</th>
-              <th>percentage %</th>
-              <th>result</th>
-            </tr>
-          </thead>
-          <tbody className="text-center text-capitalize">
-            {this.state.testResult.map((item, index) => {
-              return (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td className="text-left">{item.studentName}</td>
-                  <td>{item.totalNumberOfCorrectAnswer}</td>
-                  <td>{item.totalNumberOfQuestion}</td>
-                  <td>{item.obtainedPoints}</td>
-                  <td>{item.totalPoints}</td>
-                  <td>{item.obtainedPercentage}%</td>
-                  {item.resultStatus ? (
-                    <td>
-                      <span className="badge badge-success text-capitalize">
-                        pass
-                      </span>
-                    </td>
-                  ) : (
-                    <td>
-                      <span className="badge badge-danger text-capitalize">
-                        fail
-                      </span>
-                    </td>
-                  )}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+      <table className="table table-striped table-hover" id="result">
+        <thead className="text-center text-capitalize">
+          <tr>
+            <th>sr</th>
+            <th className="text-left">student name</th>
+            <th>Correct Question</th>
+            <th>total Question</th>
+            <th>obtain score</th>
+            <th>total score</th>
+            <th>percentage %</th>
+            <th>result</th>
+          </tr>
+        </thead>
+        <tbody className="text-center text-capitalize">
+          {this.state.testResult.map((item, index) => {
+            return (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td className="text-left">{item.studentName}</td>
+                <td>{item.totalNumberOfCorrectAnswer}</td>
+                <td>{item.totalNumberOfQuestion}</td>
+                <td>{item.obtainedPoints}</td>
+                <td>{item.totalPoints}</td>
+                <td>{item.obtainedPercentage}%</td>
+                {item.resultStatus ? (
+                  <td>
+                    <span className="badge badge-success text-capitalize">
+                      pass
+                    </span>
+                  </td>
+                ) : (
+                  <td>
+                    <span className="badge badge-danger text-capitalize">
+                      fail
+                    </span>
+                  </td>
+                )}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     );
   }
 }

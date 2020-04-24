@@ -34,21 +34,21 @@ result.create = async (request, response) => {
         }
         const result = new Result(userResult);
         result.save()
-            .then(response => {
-                response.json(response);
+            .then(data => {
+                response.json({ "response": data });
 
             })
             .catch(error => {
-                response.json({ error });
+                response.json({ "error": error.message });
             })
 
     } catch (error) {
-        response.json({ error })
+        response.json({ "error": error.message })
     }
 }
 
 result.read = async (request, response) => {
-    Result.find({testId:request.params.id}).populate("tests").then(data => {
+    Result.find({ testId: request.params.id }).populate("tests").then(data => {
         response.json(data)
     }).catch(error => {
         response.json({ error: error.message })
