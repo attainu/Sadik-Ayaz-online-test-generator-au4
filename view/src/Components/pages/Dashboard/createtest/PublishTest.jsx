@@ -1,5 +1,7 @@
 import React from "react";
 import app from "../../../../appsBasic";
+import swal from 'sweetalert';
+
 const PublishTest = (props) => {
   return (
     <div className="row">
@@ -17,7 +19,15 @@ const PublishTest = (props) => {
                 className="form-control"
                 disabled
               ></input>
-              <button className="btn btn-primary mt-3 mx-auto">Copy Url</button>
+              <button
+                className="btn btn-primary mt-3 mx-auto"
+                onClick={() => {
+                  navigator.clipboard.writeText(app.getTestUrl());
+                  swal("copied", "success", "success");
+                }}
+              >
+                Copy Url
+              </button>
             </div>
           </div>
         </div>
