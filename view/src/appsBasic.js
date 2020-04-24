@@ -53,20 +53,20 @@ var app = {
     removeTestUrl: function () {
         return localStorage.removeItem("testurl");
     },
-    getIsDisplay: function () {
-        return localStorage.getItem("isdisplay");
+    getShowUserTestPaper: function () {
+        return localStorage.getItem("showusertestpaper");
     },
-    setIsDisplay: function (isdisplay) {
-        return localStorage.setItem("isdisplay", isdisplay);
+    setShowUserTestPaper: function (showusertestpaper) {
+        return localStorage.setItem("showusertestpaper", showusertestpaper);
     },
-    removeIsDisplay: function () {
-        return localStorage.removeItem("isdisplay");
+    removeShowUserTestPaper: function () {
+        return localStorage.removeItem("showusertestpaper");
     },
     getStudentname: function () {
         return localStorage.getItem("studentname");
     },
     setStudentname: function (studentname) {
-        return localStorage.setItem("studentname",studentname);
+        return localStorage.setItem("studentname", studentname);
     },
     removeStudentname: function () {
         return localStorage.removeItem("studentname");
@@ -75,7 +75,7 @@ var app = {
         return localStorage.getItem("studentid");
     },
     setStudentId: function (studentid) {
-        return localStorage.setItem("studentid",studentid);
+        return localStorage.setItem("studentid", studentid);
     },
     removeStudentId: function () {
         return localStorage.removeItem("studentid");

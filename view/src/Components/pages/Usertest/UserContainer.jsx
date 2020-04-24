@@ -5,19 +5,24 @@ import UserForm from "./UserForm";
 import swal from "sweetalert";
 import Error from "./Error";
 import UserTestPaper from "./UserTestPaper";
+import StudentResult from "./StudentResult";
 import app from "../../../appsBasic";
 import Questions from "../../model/collection/questions";
-import Student from "../../model/collection/student";
 
 class UserContainer extends Component {
   state = {
-    username: app.getStudentname(),
+    studentName: app.getStudentname(),
     userId: app.getStudentId(),
     testId: this.props.match.params.id,
     isPublished: null,
     testName: null,
+    testPaper: null,
     questionCollection: [],
     totalMarks: null,
+    showError: null,
+    showUserForm: false,
+    showUserTestPaper: app.getShowUserTestPaper(),
+    studentResult: null,
   };
 
   fetchTest = () => {
@@ -25,17 +30,19 @@ class UserContainer extends Component {
       .get(`http://localhost:5000/test/read/${this.state.testId}`)
       .then((response) => {
         const questions = [...response.data.questions];
-        if (response.data.publish) {
+        if (response.status === 200) {
           const questionPaper = new Questions(questions);
           this.setState({
             testPaper: questionPaper,
             testName: response.data.name,
             isPublished: response.data.publish,
             totalMarks: response.data.totalmarks,
+            showError: !response.data.publish,
+            showUserForm: response.data.publish,
           });
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => swal(error, "something went wrong", "error"));
   };
 
   componentDidMount() {
@@ -44,37 +51,43 @@ class UserContainer extends Component {
 
   inputHandler = (event) => {
     this.setState({
-      username: event.target.value,
+      studentName: event.target.value,
     });
   };
 
   studentNameHandler = (event) => {
     event.preventDefault();
-    if (!this.state.username) {
-      swal("Username is Required", "something went wrong", "error");
+
+    if (!this.state.studentName) {
+      swal("studentName is Required", "something went wrong", "error");
     } else {
       axios
         .post(`http://localhost:5000/student/create`, {
-          name: this.state.username,
+          name: this.state.studentName,
           success: true,
         })
         .then((response) => {
           if (response.status === 200) {
             swal("Success!!", "redirected...", "success").then(() => {
-              app.setIsDisplay(response.data.success);
+              app.setShowUserTestPaper(response.data.success);
               app.setStudentId(response.data._id);
               app.setStudentname(response.data.name);
-
-              let studentDetails = {
-                StudentId: response.data._id,
-                StudentName: response.data.name,
-              };
-
-              const student = new Student(studentDetails);
               this.setState({
-                username: student.getStudentDetails().StudentName,
-                userId: student.getStudentDetails().StudentId,
+                showUserTestPaper: true,
+                userId: app.getStudentId(),
+                studentName: app.getStudentname(),
+                showUserForm: false,
               });
+              // let studentDetails = {
+              //   StudentId: response.data._id,
+              //   StudentName: response.data.name,
+              // };
+
+              // const student = new Student(studentDetails);
+              // this.setState({
+              //   studentName: student.getStudentDetails().StudentName,
+              //   userId: student.getStudentDetails().StudentId,
+              // });
             });
           }
         });
@@ -86,7 +99,7 @@ class UserContainer extends Component {
       testId: this.state.testId,
       userId: this.state.userId,
       totalMarks: this.state.totalmarks,
-      username: this.state.username,
+      username: this.state.studentName,
       testResponse: this.state.questionCollection,
     };
 
@@ -95,18 +108,26 @@ class UserContainer extends Component {
       .then((response) => {
         if (response.status === 200) {
           swal("Test Submited!!", "redirected...", "success").then(() => {
-            app.removeIsDisplay();
+            
+            this.setState({
+              showUserTestPaper: false,
+              showUserForm: false,
+              studentResult: response,
+            });
+
+            app.removeShowUserTestPaper();
             app.removeStudentId();
             app.removeStudentname();
-            this.setState({
-              username: null,
-              userId: null,
-              testId: null,
-              isPublished: null,
-              testName: null,
-              questionCollection: null,
-              totalMarks: null,
-            });
+            
+            // this.setState({
+            //   studentName: null,
+            //   userId: null,
+            //   testId: null,
+            //   isPublished: null,
+            //   testName: null,
+            //   questionCollection: null,
+            //   totalMarks: null,
+            // });
           });
         } else {
           swal("Error", "something went wrong...", "error");
@@ -130,22 +151,32 @@ class UserContainer extends Component {
   };
 
   veiwHandler = () => {
-    if (!this.state.isPublished) {
+    if (this.state.showError === true) {
       return <Error></Error>;
-    } else if (!app.getIsDisplay()) {
+    }
+
+    if (this.state.showUserForm === true) {
       return (
         <UserForm
           nameHandler={this.studentNameHandler}
           inputHandler={this.inputHandler}
         ></UserForm>
       );
-    } else {
+    } else if (this.state.showUserTestPaper === true) {
       return (
         <UserTestPaper
           {...this.state}
           answerHandler={this.answerHandler}
           submitTest={this.submitTest}
         ></UserTestPaper>
+      );
+    } else {
+      return (
+        <div>
+          <StudentResult
+            studentResult={this.state.studentResult}
+          ></StudentResult>
+        </div>
       );
     }
   };

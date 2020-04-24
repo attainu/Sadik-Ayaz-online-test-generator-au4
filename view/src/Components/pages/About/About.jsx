@@ -73,7 +73,8 @@ class About extends Component {
                   <p className="card-text">
                     Create an exam from your existing tests with just a few
                     clicks. At any time you can copy a question from one test to
-                    another one!
+                    another one! Each test taker will have a random set of
+                    questions.
                   </p>
                 </div>
               </div>
@@ -105,7 +106,8 @@ class About extends Component {
                   <hr></hr>
                   <p className="card-text">
                     Quick and easy reports to see how many test takers answered
-                    which questions right and wrong.
+                    which questions right and wrong.Each test taker will have a
+                    random set of questions.
                   </p>
                 </div>
               </div>
@@ -120,7 +122,8 @@ class About extends Component {
                   <p className="card-text">
                     Any test, any version, including answer sheets can be
                     download as a Micrsoft Word or PDF document to be saved and
-                    printed later.
+                    printed later.Each test taker will have a random set of
+                    questions.
                   </p>
                 </div>
               </div>

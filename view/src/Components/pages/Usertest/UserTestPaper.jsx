@@ -1,12 +1,13 @@
 import React from "react";
 
 const UserTestPaper = (props) => {
+  console.log(props)
   return (
     <div className="container-fluid">
       <div className="row">
         <div className="col mt-2 text-capitalize">
           <p>
-            <i className="fa fa-user" aria-hidden="true"></i> {props.username}
+            <i className="fa fa-user" aria-hidden="true"></i> {props.studentName}
           </p>
         </div>
         <div className="col mx-auto mt-2 text-capitalize">
