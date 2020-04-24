@@ -18,7 +18,7 @@ class Result extends Component {
 
   fetchTest = () => {
     axios
-      .get(`http://localhost:5000/user/read/${app.getUserId()}`)
+      .get(`/user/read/${app.getUserId()}`)
       .then((response) => {
         this.setState({
           testDetails: new Tests(response.data.tests),

@@ -13,7 +13,7 @@ class resultTable extends Component {
 
   fetchResult = async () => {
     await axios
-      .get(`http://localhost:5000/result/read/${this.state.testId}`)
+      .get(`/result/read/${this.state.testId}`)
       .then((response) => {
         this.setState({
           testResult: response.data,
