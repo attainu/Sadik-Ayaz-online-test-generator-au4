@@ -1,5 +1,5 @@
 import React from "react";
-import QuestionModal from "./questionModel";
+import QuestionModal from "./QuestionModel";
 const Showtest = (props) => {
   return (
     <React.Fragment>
