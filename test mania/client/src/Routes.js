@@ -17,6 +17,7 @@ import About from './Components/pages/About/About';
 import UserTest from './Components/pages/Usertest/UserContainer';
 import ShowTest from './Components/pages/Dashboard/createtest/Showtest';
 import History from './Components/pages/Dashboard/testhistory/HistoryContainer';
+import Modal from './Components/pages/Dashboard/createtest/questionModel';
 
 const Content = () => (
   <BrowserRouter>
@@ -27,6 +28,7 @@ const Content = () => (
       <Route exact path="/" component={Home} />
       <Route path="/test/:id" component={UserTest} />
       <Route exact path="/about" component={About} />
+      <Route exact path="/modal" component={Modal} />
       <RequiresAuthentication path="/dashboard" component={Dashboard} />
       <RequiresAuthentication path="/add-test" component={AddTest} />
       <RequiresAuthentication path="/test-history" component={History} />

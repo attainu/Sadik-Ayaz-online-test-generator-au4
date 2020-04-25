@@ -12,6 +12,7 @@ const TestForm = (props) => {
               type="text"
               placeholder="enter test name here"
               onChange={props.testInput}
+              required
             ></input>
           </div>
           <input
