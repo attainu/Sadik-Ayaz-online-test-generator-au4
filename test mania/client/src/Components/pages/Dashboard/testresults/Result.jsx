@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Result.css";
 import app from "../../../../appsBasic";
 import axios from "axios";
-import TestList from "./TestList";
+import TestList from "./testList";
 import Error from "../../../basic/Error";
 import Tests from "../../../model/collection/test";
 

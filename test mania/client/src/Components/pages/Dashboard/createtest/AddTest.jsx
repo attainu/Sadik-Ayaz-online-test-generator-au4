@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TestForm from "./TestForm";
+import TestForm from "./testForm";
 import QuestionForm from "./QuestionForm";
 import Showtest from "./Showtest";
 import PublishTest from "./PublishTest";
