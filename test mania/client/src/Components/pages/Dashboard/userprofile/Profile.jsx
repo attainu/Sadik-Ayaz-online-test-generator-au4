@@ -93,7 +93,7 @@ class Profile extends Component {
           <div className="form-group">
             <label>Email</label>
             <input
-              type="text"
+              type="email"
               name="email"
               value={this.state.email}
               className="form-control"

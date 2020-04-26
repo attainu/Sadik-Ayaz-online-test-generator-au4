@@ -161,7 +161,14 @@ class UserContainer extends Component {
   };
 
   render() {
-    return <React.Fragment>{this.veiwHandler()}</React.Fragment>;
+    return (
+      <React.Fragment>
+        <nav className="navbar navbar-light bg-light">
+          <span className="navbar-brand mb-0 h1">TEST-MANIA</span>
+        </nav>
+        {this.veiwHandler()}
+      </React.Fragment>
+    );
   }
 }
 

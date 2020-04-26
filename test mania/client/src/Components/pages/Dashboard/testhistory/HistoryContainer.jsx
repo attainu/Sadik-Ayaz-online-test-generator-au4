@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import HistoryTable from "./HistoryTable";
 import app from "../../../../appsBasic";
 import Tests from "../../../model/collection/test";
+import Error from "../../../basic/Error";
 import Axios from "axios";
 
 class HistoryContainer extends Component {
   state = {
     testHistory: null,
     result: null,
+    showError: false,
   };
 
   componentDidMount() {
@@ -17,11 +19,23 @@ class HistoryContainer extends Component {
   fetchTest = () => {
     Axios.get(`/user/read/${app.getUserId()}`)
       .then((response) => {
-        const result = new Tests(response.data.tests.reverse());
-        this.setState({
-          testHistory: result.getTests(),
-          result: result,
-        });
+        if (response.status === 200) {
+          if (response.data.tests.length === 0) {
+            this.setState({
+              showError: true,
+            });
+          } else {
+            const result = new Tests(response.data.tests.reverse());
+            this.setState({
+              testHistory: result.getTests(),
+              result: result,
+            });
+          }
+        } else {
+          this.setState({
+            showError: true,
+          });
+        }
       })
       .catch((error) => console.log(error));
   };
@@ -70,20 +84,17 @@ class HistoryContainer extends Component {
 
         app.removeTestName();
         app.removeTestId();
-        app.removeIsDisplay();
       })
       .catch((error) => console.log(error));
     return null;
   };
 
   veiwHandler() {
-    if (!this.state.testHistory) {
-      return (
-        <div>
-          <h1>no test yet please creare one</h1>
-        </div>
-      );
-    } else {
+    if (this.state.showError) {
+      return <Error message="no test created yet!!"></Error>;
+    }
+
+    if (this.state.testHistory) {
       return (
         <HistoryTable
           totalTest={this.state.testHistory}
