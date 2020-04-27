@@ -23,6 +23,8 @@ class UserContainer extends Component {
     showUserForm: false,
     showUserTestPaper: app.getShowUserTestPaper(),
     studentResult: null,
+    inputFields: {},
+    error: {},
   };
 
   fetchTest = () => {
@@ -50,17 +52,38 @@ class UserContainer extends Component {
   }
 
   inputHandler = (event) => {
+    let fields = this.state.inputFields;
+    fields[event.target.name] = event.target.value;
     this.setState({
+      inputFields: fields,
       studentName: event.target.value,
     });
   };
 
+  validateForm = () => {
+    let fields = this.state.inputFields;
+    let errors = {};
+    let formIsValid = true;
+    if (!fields["student"]) {
+      formIsValid = false;
+      errors["student"] = "*Please enter your name.";
+    }
+
+    if (typeof fields["student"] !== "undefined") {
+      if (!fields["student"].match(/^[a-zA-Z ]*$/)) {
+        formIsValid = false;
+        errors["student"] = "*Please enter alphabet characters only.";
+      }
+    }
+    this.setState({
+      error: errors,
+    });
+    return formIsValid;
+  };
+
   studentNameHandler = (event) => {
     event.preventDefault();
-
-    if (!this.state.studentName) {
-      swal("studentName is Required", "something went wrong", "error");
-    } else {
+    if (this.validateForm()) {
       axios
         .post(`/student/create`, {
           name: this.state.studentName,
@@ -139,6 +162,7 @@ class UserContainer extends Component {
         <UserForm
           nameHandler={this.studentNameHandler}
           inputHandler={this.inputHandler}
+          error={this.state.error.student}
         ></UserForm>
       );
     } else if (this.state.showUserTestPaper === true) {

@@ -12,10 +12,12 @@ const UserForm = (props) => {
                 <div className="form-group">
                   <input
                     type="text"
+                    name="student"
                     className="form-control"
                     placeholder="Enter here"
                     onChange={props.inputHandler}
                   ></input>
+                  <span className="text-danger">{props.error}</span>
                   <input
                     type="Submit"
                     className="btn btn-primary btn-block mt-3"
