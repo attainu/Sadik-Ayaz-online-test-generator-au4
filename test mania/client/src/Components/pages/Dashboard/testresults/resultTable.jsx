@@ -24,6 +24,7 @@ class resultTable extends Component {
 
   render() {
     return (
+      <div className="table-responsive">
       <table className="table table-striped table-hover" id="result">
         <thead className="text-center text-capitalize">
           <tr>
@@ -66,6 +67,7 @@ class resultTable extends Component {
           })}
         </tbody>
       </table>
+    </div>
     );
   }
 }
